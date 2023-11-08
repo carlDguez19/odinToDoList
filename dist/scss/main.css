@@ -1,5 +1,26 @@
+body {
+  margin: 0;
+  border: 0;
+  background-color: #b5af14;
+}
+
 .test {
-  width: 250px;
-  height: 250px;
-  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-menu-logo {
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.main-logo {
+  padding: 0 50px;
+  margin-top: -30px;
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=main.css.map */
