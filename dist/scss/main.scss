@@ -1,23 +1,27 @@
+@import "headerLogoMenu";
 @import "sideBar";
-body{
-    margin: 0;
-    border: 0;
-    background-color: #b5af14;
-}
-.test{
+.sidebar-menu{
+    position: absolute;
+    background-color: skyblue;
+    width: 300px;
+    height: 100vh;
+    top: 0;
     display: flex;
-    justify-content: space-between;
-}
-.main-menu-logo{
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-.main-logo{
-    padding: 0 50px;
-    margin-top: -30px;
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    flex-direction: column;
+    
+    img{
+        width: 30px;
+        height: 30px;   
+    }
+    .menuClose{
+        text-align: right;
+        margin: 10px 10px;
+    }
+    h3,p{
+        margin-left: 50px;
+        margin-top: 20px;
+    }
+    h3:first-child{
+        margin-top: 50px;
+    }
 }
