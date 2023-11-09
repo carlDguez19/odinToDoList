@@ -1,17 +1,25 @@
+:root{
+    --newBlack: #231f20;
+    --goAwayGreen: #b5af14;
+}
 body{
     margin: 0;
     border: 0;
-    background-color: #b5af14;
+    background-color: var(--goAwayGreen);
 }
 span{
     font-size: 50px;
     font-weight: 600;
     margin-top: 20px;
-    color: #231f20;
+    color: var(--newBlack);
 }
 .headerTop{
     display: flex;
     justify-content: space-between;
+}
+.menuContainer{
+    width: 50px;
+    height: 50px;
 }
 .main-menu-logo{
     width: 50px;
@@ -19,12 +27,23 @@ span{
     margin-top: 20px;
     margin-left: 20px;
 }
+.main-menu-logo:active{
+    width: 45px;
+    height: 45px;
+}
 .main-logo{
-    padding: 0 50px;
-    margin-top: -30px;
+    padding: 0 30px;
     width: 200px;
-    height: 200px;
+    height: auto;
     object-fit: cover;
+}
+/* divider */
+.divider{
+    width: 90%;
+    height: 3px;
+    background-color: var(--newBlack);
+    margin: 0 auto;
+    border-radius: 3px;
 }
 
 /* sidebar css */
@@ -34,31 +53,45 @@ span{
     width: 300px;
     height: 100vh;
     top: 0;
+    left: -350px;
     display: flex;
     flex-direction: column;
 }
     
-img{
-    width: 30px;
-    height: 30px;
-}
-img :active{
-    width: 25px;
-    height: 25px;
-}
 .menuClose{
-    /* text-align: right;
-    float: right; */
     position: absolute;
     right: 0;
     margin: 10px 10px;
     width: 30px;
     height: 30px;
 }
+.menuClose :active{
+    width: 25px;
+    height: 25px;
+}
+
 h3,p{
     margin-left: 50px;
     margin-top: 20px;
 }
+
 .projecth3{
     margin-top: 80px;
+}
+
+@keyframes menuSlideOn{
+    from{
+    }
+    to{
+        left: 0;
+    }
+}
+
+@keyframes menuSlideClose{
+    from{
+        left: 0;
+    }
+    to{
+        left: -350px;
+    }
 }
