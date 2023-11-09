@@ -26,13 +26,14 @@ span{
     height: 50px;
     margin-top: 20px;
     margin-left: 20px;
+    cursor: pointer;
 }
 .main-menu-logo:active{
     width: 45px;
     height: 45px;
 }
 .main-logo{
-    padding: 0 30px;
+    padding-right: 30px;
     width: 200px;
     height: auto;
     object-fit: cover;
@@ -50,7 +51,7 @@ span{
 .sidebar-menu{
     position: absolute;
     background-color: skyblue;
-    width: 300px;
+    width: 200px;
     height: 100vh;
     top: 0;
     left: -350px;
@@ -64,6 +65,7 @@ span{
     margin: 10px 10px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 .menuClose :active{
     width: 25px;
