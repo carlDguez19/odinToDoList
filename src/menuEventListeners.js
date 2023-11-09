@@ -3,9 +3,9 @@ export function menuEventListen(){
     const closeLogo = document.querySelector(".menuClose");
     const sideBar = document.querySelector(".sidebar-menu");
     menuLogo.addEventListener('click', function(){
-        sideBar.style.animation = 'menuSlideOn 2s forwards';
+        sideBar.style.animation = 'menuSlideOn 1.5s forwards';
     });
     closeLogo.addEventListener('click', function(){
-        sideBar.style.animation = 'menuSlideClose 2s forwards';
+        sideBar.style.animation = 'menuSlideClose 1.5s forwards';
     })
 }
