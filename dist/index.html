@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TODOTODOTODOTODO</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <div class="newProjectOverlay">
+        <form action="@" id="newProjectForm">
+            <label for="title">Title: </label>
+            <input type="text" id="title" placeholder="nameOfProject">
+            <label for="description">Description: </label>
+            <input type="text" id="description" placeholder="briefDescriptionOfProject">
+            <button type="submit">Accept</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </div>
+    <!-- <div class="newToDoOverlay"></div> -->
     <div class="headerTop">
         <div class="menuContainer"><img src="../dist/imgs/icons8-menu-50.png" class="main-menu-logo"></div>
         <span>WorkerAnts</span>
@@ -16,7 +27,7 @@
     <div class="sidebar-menu">
         <div class="menuClose"><img src="../dist/imgs/icons8-close-30.png" alt="close button" ></div>
         <h3 class="projecth3">PROJECTS</h3>
-        <p>Create project</p>
+        <div class="createProj"><img src="../dist/imgs/icons8-add-50.png" class="addProjButton">Create Project</div>
         <h3>Tasks</h3>
         <p>All Tasks</p>
         <p>Today</p>
