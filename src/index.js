@@ -1,4 +1,6 @@
 import { menuEventListen } from "./menuEventListeners";
-import { projectInit } from "./createProject";
+import { Project } from "./createProject";
 menuEventListen();
-projectInit();
+let proj1 = new Project("carlosBruh", "apiuf");
+console.log(proj1.name);
+console.log(proj1.description);
