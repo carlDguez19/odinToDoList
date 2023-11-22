@@ -17,7 +17,7 @@ body{
     align-items: center;
     border-radius: 15px;
     border: 3px solid skyblue;
-    top: 50%;
+    top: -50%;
     left: 50%;
     width: 500px;
     height: 500px;
@@ -112,19 +112,21 @@ span{
     height: 25px;
 }
 
+/* create project in side menu */
 .createProj{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .addProjButton{
     width: 20px;
     height: 20px;
-    margin-right: 3px;
+    margin-left: 3px;
 }
 
 h3,p{
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 20px;
 }
 
@@ -146,5 +148,21 @@ h3,p{
     }
     to{
         left: -350px;
+    }
+}
+
+@keyframes projectSlideDown{
+    from{
+        top: -50%;
+    }to{
+        top: 50%;
+    }
+}
+
+@keyframes projectSlideUp{
+    from{
+        top: 50%;
+    }to{
+        top: -50%;
     }
 }
