@@ -5,11 +5,12 @@
 body{
     margin: 0;
     border: 0;
+    padding: 0;
     background-color: var(--goAwayGreen);
 }
 
-
-.newProjectOverlay{
+/* project overlay */
+.newProjectOverlay, .errorProjectOverlay{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -49,6 +50,20 @@ span{
     margin-right: -160px;
     color: var(--newBlack);
 }
+/* errorProjectOverlayerrorProjectOverlay */
+.errorProjectOverlay{
+    top: -50%;
+    width: 250px;
+    height: 250px;
+    background-color: red;
+}
+.projErrorMess{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--newBlack);
+}
+/* heroHeaderheroHeaderheroHeader */
 .headerTop{
     display: flex;
     justify-content: space-between;
@@ -164,5 +179,21 @@ h3,p{
         top: 50%;
     }to{
         top: -50%;
+    }
+}
+
+@keyframes errorDisplay{
+    from{
+        top: 150%;
+    }to{
+        top: 50%;
+    }
+}
+
+@keyframes errorDisapear{
+    from{
+        top: 50%;
+    }to{
+        top: 150%;
     }
 }

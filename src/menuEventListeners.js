@@ -2,8 +2,8 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
-//here i can also import the images into the html
-
+//I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
+export let projArr = [];
 
 export function menuEventListen(){
     const menuContainer = document.querySelector(".menuContainer");
@@ -35,10 +35,6 @@ export function menuEventListen(){
     const sideBar = document.querySelector(".sidebar-menu");
     const projOverlay = document.querySelector(".newProjectOverlay");
 
-    //buttons
-    const closeButton = document.querySelector(".closeButton");
-    const submitButton = document.querySelector(".submitButton");
-
     menuContainer.addEventListener('click', function(){
         sideBar.style.animation = 'menuSlideOn 1.5s forwards';
     });
@@ -49,14 +45,5 @@ export function menuEventListen(){
         console.log("create project button clicked!!");
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
         projOverlay.style.animation = 'projectSlideDown 1.5s forwards';
-    })
-    closeButton.addEventListener('click', function(){
-        projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
-        //projectFormClear();
-    })
-    submitButton.addEventListener('click', function(){
-        projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
-        createProjectFromData();//IMPORTED FROM FUNCTIONAL PROJECT JS
-        //projectFormClear();
     })
 }
