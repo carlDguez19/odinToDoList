@@ -43,7 +43,7 @@ button{
 }
 
 
-span{
+.compName{
     font-size: 50px;
     font-weight: 600;
     margin-top: 20px;
@@ -93,6 +93,7 @@ span{
     height: auto;
     object-fit: cover;
 }
+
 /* divider */
 .divider{
     width: 90%;
@@ -102,7 +103,38 @@ span{
     border-radius: 3px;
 }
 
-/* sidebar css */
+/* projectSectionprojectSectionprojectSectionprojectSectionprojectSection */
+.projectSection{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: red;
+}
+.currentProject{
+    width: 100%;
+    height: auto;
+    background-color: lime;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.project{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+    background-color: purple;
+    border-radius: 15px;
+}
+.project
+/* sidebarsidebarsidebarsidebarsidebarsidebar css */
 .sidebar-menu{
     position: absolute;
     background-color: skyblue;
@@ -179,21 +211,5 @@ h3,p{
         top: 50%;
     }to{
         top: -50%;
-    }
-}
-
-@keyframes errorDisplay{
-    from{
-        top: 150%;
-    }to{
-        top: 50%;
-    }
-}
-
-@keyframes errorDisapear{
-    from{
-        top: 50%;
-    }to{
-        top: 150%;
     }
 }

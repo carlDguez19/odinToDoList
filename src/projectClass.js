@@ -1,26 +1,24 @@
 export class Project{
-    constructor(name, description){
-        this.name = name;
+    constructor(title, description){
+        this.title = title;
         this.description = description;
         this.toDos = [];
     }
-    get name(){
-        return this._name;
+    get title(){
+        return this._title;
     }
     get description(){
         return this._description;
     }
-    get toDoList(){
+    get toDoList(){//get array then push a toDo
         return this._toDos;
     }
 
-    set name(newName){
-        this._name = newName;
+    set title(newTitle){
+        this._title = newTitle;
     }
     set description(newDesc){
         this._description = newDesc;
     }
-    set toDos(newToDo){
-        this._toDos = newToDo;
-    }
+
 }

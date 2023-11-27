@@ -17,12 +17,13 @@ export function projectOverlayStuff(){
     submitButton.addEventListener('click', function(){
         console.log("submit button clicked");
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
-        createProjectFromData();
+        const projectParam = extractDataForProject();
+        createProject(projectParam);
         projectFormClear();
     })
 }
 
-function createProjectFromData(){
+function extractDataForProject(){
     const titleInput = document.getElementById("title").value
     let descInput = document.getElementById("description").value;
 
@@ -32,10 +33,11 @@ function createProjectFromData(){
         projArr.push(projectMade);
         console.log(projArr[(projArr.length)-1].title);
         console.log(projArr[(projArr.length)-1].description);
+        return projectMade;
     }else{
-        displayNeedTitle();// CAN INSERT DOM MANIPULATION TO SHIFT DOWN THE ERROR OVERLAY :)
         console.log("Need a title to create a project!");//debugging
-        
+        displayNeedTitle();// CAN INSERT DOM MANIPULATION TO SHIFT DOWN THE ERROR OVERLAY :)
+        return;
     }
 }
 
