@@ -179,6 +179,24 @@ li{
 }
 
 /* create project in side menu */
+.projectNameSidebar{
+    margin-left: 55px;
+    margin-top: 15px;
+    font-size: 14pt;
+    font-weight: 500;
+    color: #dfdfdf;
+    background-color: var(--newBlack);
+    border-radius: 15px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+.projectNameSidebar:hover{
+    background-color: #555;
+}
+.projectNameSidebar:active{
+    background-color: var(--newBlack);
+}
+
 .createProj{
     display: flex;
     justify-content: center;

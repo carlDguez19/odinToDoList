@@ -1,5 +1,6 @@
 import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
+import { addProjectToSidebar } from "./projectDOM";
 
 const projOverlay = document.querySelector(".newProjectOverlay");
 
@@ -18,7 +19,8 @@ export function projectOverlayStuff(){
         console.log("submit button clicked");
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         const projectParam = extractDataForProject();
-        createProject(projectParam);
+        //createProjectDOM(projectParam);//this will be in projectDOM.js file
+        addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file
         projectFormClear();
     })
 }
