@@ -107,10 +107,10 @@ button{
 .projectSection{
     width: 100%;
     height: 100vh;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
+    align-items: center; */
     background-color: red;
 }
 .currentProject{
@@ -122,18 +122,37 @@ button{
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    text-align: center;
 }
 .project{
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 80%;
     height: 50px;
     background-color: purple;
     border-radius: 15px;
 }
-.project
+.todoUl{
+    list-style-type: none;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    white-space: nowrap;
+}
+li{
+    list-style-type: none;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    background-color: blue;
+    margin-top: 10px;
+}
 /* sidebarsidebarsidebarsidebarsidebarsidebar css */
 .sidebar-menu{
     position: absolute;
