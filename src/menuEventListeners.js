@@ -50,9 +50,9 @@ export function menuEventListen(){
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
         projOverlay.style.animation = 'projectSlideDown 1.5s forwards';
     });
-    sideBar.addEventListener('click', (e)=>{
+    sideBar.addEventListener('click', (e) => {
         if(e.target.tagName === 'SPAN'){
-                
+
         }
-    })
+    });
 }
