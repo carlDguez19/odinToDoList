@@ -5,9 +5,9 @@ import Create from '../src/imgs/add.png';
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 export let projArr = [];
 
-// export function dqs(class){ MIGHT USE NOT SURE YET
-//     return document.querySelector(class);
-// }
+export function dqs(c){
+    return document.querySelector(c);
+}
 
 export function menuEventListen(){
     const menuContainer = document.querySelector(".menuContainer");

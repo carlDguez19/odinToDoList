@@ -1,12 +1,9 @@
 import Remove from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import Edit from '../src/imgs/edit.png';
+import { dqs } from './menuEventListeners';
 
 const mainSec = dqs(".projectSection");
-
-function dqs(c){
-    return document.querySelector(c);
-}
 
 export function addProjectToSidebar(projectTitle){
     let newProjTitle = projectTitle.slice(0,7);

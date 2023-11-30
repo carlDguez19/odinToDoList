@@ -183,9 +183,14 @@ li{
 }
 
 /* create project in side menu */
+.sidebarProject{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .projectNameSidebar{
-    margin-left: 55px;
-    margin-top: 15px;
+    margin-top: 5px;
     font-size: 14pt;
     font-weight: 500;
     color: #dfdfdf;
@@ -207,6 +212,15 @@ li{
     align-items: center;
     cursor: pointer;
 }
+.createProj:hover{
+    background-color: blue;
+    border-radius: 15px;
+}
+.createProj:active{
+    background-color: darkblue;
+    border-radius: 15px;
+}
+
 .addProjButton{
     width: 20px;
     height: 20px;
