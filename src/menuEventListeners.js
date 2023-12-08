@@ -2,6 +2,8 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
+import { displayProjectInMain } from './projectDOM';
+import { findProjectInArr } from './projectEventListeners';
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 export let projArr = [];
 
@@ -52,7 +54,10 @@ export function menuEventListen(){
     });
     sideBar.addEventListener('click', (e) => {
         if(e.target.tagName === 'SPAN'){
-
+            console.log("the following is e.target.value");
+            console.log(e.target.textContent);
+            const dispProj = findProjectInArr(e.target.textContent)
+            displayProjectInMain(dispProj);
         }
     });
 }

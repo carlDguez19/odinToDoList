@@ -9,11 +9,7 @@ export function addProjectToSidebar(projectTitle){
     let newProjTitle = projectTitle.slice(0,7);
     const projSide = dqs(".sidebarProject");
     let projTitle = document.createElement('span');
-    if(projectTitle.length > 6){
-        projTitle.textContent = newProjTitle + "...";
-    }else{
-        projTitle.textContent = projectTitle;
-    }
+    projTitle.textContent = projectTitle;
     projTitle.classList.add('projectNameSidebar');
     projSide.appendChild(projTitle);
 }

@@ -2,6 +2,7 @@ import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
 import { addProjectToSidebar } from "./projectDOM";
 import { displayProjectInMain } from "./projectDOM";
+import { projectEListeners } from "./projectEventListeners";
 
 const projOverlay = document.querySelector(".newProjectOverlay");
 
@@ -25,6 +26,7 @@ export function projectOverlayStuff(){
             console.log("project obj returned successfully");
             addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file
             displayProjectInMain(projectParam);
+            projectEListeners();
         }
         projectFormClear();
     })
