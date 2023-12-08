@@ -27,6 +27,10 @@ function editForm(projectTitle){
     projOverlay1.style.animation = 'projectSlideDown 1.5s forwards';
     const titleIn = dqs("#title");
     titleIn.value = projectTitle;
+
+    
+    //add eventListener for submit and cancel buttons on project form
+    //hopefully they will do something different???
 }
 export function findProjectInArr(title){
     console.log("looking for project in arr")
