@@ -8,7 +8,6 @@ import { _testering } from './projectEventListeners';
 const mainSec = dqs(".projectSection");
 
 export function addProjectToSidebar(projectTitle){
-    let newProjTitle = projectTitle.slice(0,7);
     const projSide = dqs(".sidebarProject");
     let projTitle = document.createElement('span');
     projTitle.textContent = projectTitle;

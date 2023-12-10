@@ -16,7 +16,7 @@ export var _testering = function(e){
         //when found fill projectForm and drop form down for user
         //if submit then replace info with new info
         //else if cancel then leave project as it was
-        console.log("in projEditButton eventListener");
+        //console.log("in projEditButton eventListener");
         const editButton = e.target.matches(".projEdit");
         const removeButton = e.target.matches(".projRemove");
         const currTitle = dqs(".projectNameMain");
@@ -24,6 +24,9 @@ export var _testering = function(e){
             console.log("editButton clicked");
             editForm(currTitle.textContent);
             const foundProj = findProjectInArr(currTitle);//this will be left till the end
+            for(let a = 0; a < projArr.length; a++){
+                console.log((a+1)+ " "+ projArr[a].title)
+            }
         }else if(removeButton){
             //const currTitle = dqs(".projectNameMain");
             console.log("removeButton clicked");
@@ -32,6 +35,9 @@ export var _testering = function(e){
             clearMain();
             //const sideBar = dqs(".sidebar-menu");
             //sideBar.style.animation = 'menuSlideOn 1.5s forwards';
+            for(let a = 0; a < projArr.length; a++){
+                console.log((a+1)+ " "+ projArr[a].title)
+            }
         }
 }
 
@@ -62,7 +68,7 @@ function editForm(projectTitle){
     //hopefully they will do something different???
 }
 export function findProjectInArr(title){//MIGHT NOT NEED THIS MIGHT NOT NEED THIS MIGHT NOT NEED THIS
-    console.log("looking for project in arr")
+    //console.log("looking for project in arr")
     let index = 0;
     for(let i = 0; i < projArr.length; i++){
         index = i;

@@ -48,7 +48,7 @@ export function menuEventListen(){
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
     });
     createProjCont.addEventListener('click', function(){
-        console.log("create project button clicked!!");
+        //console.log("create project button clicked!!");
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
         projOverlay.style.animation = 'projectSlideDown 1.5s forwards';
     });
