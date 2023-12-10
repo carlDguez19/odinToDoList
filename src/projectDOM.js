@@ -2,6 +2,7 @@ import Remove from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import Edit from '../src/imgs/edit.png';
 import { dqs } from './menuEventListeners';
+import { _testering } from './projectEventListeners';
 
 const mainSec = dqs(".projectSection");
 
@@ -67,9 +68,13 @@ export function displayProjectInMain(project){
     projDiv.classList.add("project");
 
     mainSec.appendChild(projDiv);
+    
+    //call eventListener here
+    projectEListeners();
 }
 
 export function clearMain(){
+    document.removeEventListener('click', _testering);
     while(mainSec.firstChild){
         mainSec.removeChild(mainSec.firstChild)
     }

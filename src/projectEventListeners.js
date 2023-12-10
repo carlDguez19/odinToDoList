@@ -8,17 +8,17 @@ const projRemButton = dqs(".projRemove");
 const projOverlay1 = document.querySelector(".newProjectOverlay");
 
 export function projectEListeners(){
-    document.addEventListener('click', testering(e.target))
+    document.addEventListener('click', _testering)
 };
 
-export function testering(e){
+export var _testering = function(e){
     //go throuhg array comparing title
         //when found fill projectForm and drop form down for user
         //if submit then replace info with new info
         //else if cancel then leave project as it was
         console.log("in projEditButton eventListener");
-        const editButton = e.matches(".projEdit");
-        const removeButton = e.matches(".projRemove");
+        const editButton = e.target.matches(".projEdit");
+        const removeButton = e.target.matches(".projRemove");
         const currTitle = dqs(".projectNameMain");
         if(editButton){//this will be done once 'remove' is completed
             console.log("editButton clicked");
