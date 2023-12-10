@@ -60,7 +60,7 @@ function displayNeedTitle(){
     projOverlay.style.animation = "projectSlideDown 1.5s forwards";
 }
 
-function projectFormClear(){
+export function projectFormClear(){
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
 }

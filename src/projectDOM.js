@@ -69,7 +69,7 @@ export function displayProjectInMain(project){
     mainSec.appendChild(projDiv);
 }
 
-function clearMain(){
+export function clearMain(){
     while(mainSec.firstChild){
         mainSec.removeChild(mainSec.firstChild)
     }

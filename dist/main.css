@@ -10,21 +10,6 @@ body{
 }
 
 /* project overlay */
-.editProjectOverlay{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    border: 3px solid skyblue;
-    top: -50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
-    background-color: magenta;
-    transform: translate(-50%, -50%);
-}
 .newProjectOverlay, .errorProjectOverlay{
     position: absolute;
     display: flex;
