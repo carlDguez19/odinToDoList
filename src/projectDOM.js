@@ -2,6 +2,7 @@ import Remove from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import Edit from '../src/imgs/edit.png';
 import { dqs } from './menuEventListeners';
+import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
 
 const mainSec = dqs(".projectSection");
