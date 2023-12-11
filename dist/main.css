@@ -25,6 +25,26 @@ body{
     background-color: purple;
     transform: translate(-50%, -50%);
 }
+
+.newTaskOverlay{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 3px solid skyblue;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    background-color: purple;
+    transform: translate(-50%, -50%);
+}
+.buttonCont, .taskButtonCont{
+    margin-top: 15px;
+}
+
 form{
     display: grid;
     grid-template-rows: repeat(3,30px);
