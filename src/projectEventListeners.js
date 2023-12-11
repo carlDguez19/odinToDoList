@@ -19,6 +19,7 @@ export var _testering = function(e){
         //console.log("in projEditButton eventListener");
         const editButton = e.target.matches(".projEdit");
         const removeButton = e.target.matches(".projRemove");
+        const addTaskButton = e.target.matches(".projAdd");
         const currTitle = dqs(".projectNameMain");
         if(editButton){//this will be done once 'remove' is completed
             console.log("editButton clicked");
@@ -38,6 +39,9 @@ export var _testering = function(e){
             for(let a = 0; a < projArr.length; a++){
                 console.log((a+1)+ " "+ projArr[a].title)
             }
+        }
+        else if(addTaskButton){
+            
         }
 }
 

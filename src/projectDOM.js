@@ -19,6 +19,8 @@ export function displayProjectInMain(project){
     clearMain();
     const projDiv = document.createElement('div');
 
+    const taskSecUL = document.createElement('ul');
+    taskSecUL.classList.add("todoUL")
     
     const projCheckbox = document.createElement('input');
     projCheckbox.type = "checkbox";
@@ -68,6 +70,7 @@ export function displayProjectInMain(project){
     projDiv.classList.add("project");
 
     mainSec.appendChild(projDiv);
+    mainSec.appendChild(taskSecUL);
     
     //call eventListener here
     projectEListeners();
