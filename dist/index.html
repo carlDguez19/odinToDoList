@@ -25,15 +25,16 @@
     <div class="newTaskOverlay">
         <h2>Task Form</h2>
         <form action="#" id="newTaskForm">
-            <label for="title">Title: </label>
-            <input type="text" id="title" placeholder="nameOfTask" maxlength="14">
-            <label for="description">Description: </label>
-            <input type="text" id="description" placeholder="briefDescriptionOfTask">
-            <label for="dueDate">Due Date: </label>
-            <input type="date" id="dueDate">
+            <label for="tTitle">Title: </label>
+            <input type="text" id="tTitle" placeholder="nameOfTask" maxlength="14">
+            <label for="tDescription">Description: </label>
+            <input type="text" id="tDescription" placeholder="briefDescriptionOfTask">
+            <label for="tDueDate">Due Date: </label>
+            <input type="date" id="tDueDate">
             
-            <label for="taskPrio">Priority: </label>
-            <select name="priority" id="taskPrio">
+            <label for="tTaskPrio">Priority: </label>
+            <select name="priority" id="tTaskPrio">
+                <option value="Select one">Select One</option>
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
                 <option value="low">Low</option>
@@ -46,7 +47,7 @@
     </div>
     <!-- ERROR PROJECT OVERLAY ERROR PROJECT OVERLAY ERROR PROJECT OVERLAY ERROR PROJECT OVERLAY -->
     <div class="errorProjectOverlay">
-        <div class="projErrorMess">Entry must contain title</div>
+        <div class="projErrorMess">Entry must contain title and/or due date</div>
     </div>
     <!-- <div class="newToDoOverlay"></div> -->
 

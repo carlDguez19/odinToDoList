@@ -54,7 +54,7 @@ function extractDataForProject(){
     }
 }
 
-function displayNeedTitle(){
+export function displayNeedTitle(){
     const errorOverlay = document.querySelector(".errorProjectOverlay");
     errorOverlay.style.animation = "projectSlideDown 1.5s forwards"
     setTimeout(function(){
