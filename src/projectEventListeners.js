@@ -1,7 +1,7 @@
 import { dqs } from "./menuEventListeners";
 import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
-import { taskOverlayListeners } from "./taskForm";
+import { taskOverlay, taskOverlayListeners } from "./taskForm";
 //import { projOverlay } from "./menuEventListeners";
 
 const projTaskAdd = dqs(".projAdd");
@@ -42,6 +42,7 @@ export var _testering = function(e){
             }
         }
         else if(addTaskButton){
+            taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
             taskOverlayListeners();
         }
 }

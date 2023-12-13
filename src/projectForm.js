@@ -50,6 +50,8 @@ function extractDataForProject(){
     }else{
         //console.log("Need a title to create a project!");//debugging
         displayNeedTitle();// CAN INSERT DOM MANIPULATION TO SHIFT DOWN THE ERROR OVERLAY :)
+        projectFormClear();
+        projOverlay.style.animation = "projectSlideDown 1.5s forwards";
         return;
     }
 }
@@ -60,8 +62,6 @@ export function displayNeedTitle(){
     setTimeout(function(){
         errorOverlay.style.animation = "projectSlideUp 1.5s forwards"
     }, 2500);
-    projectFormClear();
-    projOverlay.style.animation = "projectSlideDown 1.5s forwards";
 }
 
 export function projectFormClear(){

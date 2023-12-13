@@ -3,7 +3,8 @@ import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { Task } from "./taskClass";
 
-const taskOverlay = dqs(".newTaskOverlay");
+export const taskOverlay = dqs(".newTaskOverlay");
+const currProj = {};
 
 export function taskOverlayListeners(){
     const taskClose = dqs(".taskCloseButton");
@@ -15,7 +16,14 @@ export function taskOverlayListeners(){
     });
     taskSubmit.addEventListener('click', function(){
         taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
-
+        const madeTask = extractDataForTask();
+        if(madeTask){
+            displayTaskInMain();
+            for(let a = 0; a < currProj.toDoList.length; a++){
+                console.log((a+1)+ " "+ currProj.toDoList[a].title);
+            }
+        }
+        taskFormClear();
     });
 }
 
@@ -28,11 +36,13 @@ export function extractDataForTask(){
 
     if(taskTitle && taskDueDate){
         const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, taskProj);
-        const currProj = findProjectInArr(taskProj);
+        currProj = findProjectInArr(taskProj);
         currProj.toDoList.push(taskMade);
         return taskMade;
     }else{
         displayNeedTitle();
+        taskFormClear();
+        taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
         return;
     }
 }
