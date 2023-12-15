@@ -58,6 +58,7 @@ export function menuEventListen(){
             console.log(e.target.textContent);
             const dispProj = findProjectInArr(e.target.textContent)
             displayProjectInMain(dispProj);
+            //displayTaskInMain(dispProj);//THIS MIGHT HAVE TO BE CALLED WITHIN DISPLAYPROJECTINMAIN WITH THE PROJECT AND UL PARAMETERS
         }
     });
 }

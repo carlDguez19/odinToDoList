@@ -74,6 +74,7 @@ export function displayProjectInMain(project){
     
     //call eventListener here
     projectEListeners();
+    console.log("this console log is after the projectElisteners it looks like its working??");
 }
 
 export function clearMain(){
