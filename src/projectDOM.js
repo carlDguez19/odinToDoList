@@ -72,9 +72,11 @@ export function displayProjectInMain(project){
     mainSec.appendChild(projDiv);
     mainSec.appendChild(taskSecUL);
     
+    //check for tasks with a loop and display each
+
     //call eventListener here
-    projectEListeners();
-    console.log("this console log is after the projectElisteners it looks like its working??");..
+    projectEListeners();//WILL HAVE TO ADD EVENT LISTENERS FOR TASKS HERE???
+    console.log("this console log is after the projectElisteners it looks like its working??");
 }
 
 export function clearMain(){

@@ -18,7 +18,7 @@ export function taskOverlayListeners(){
         taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
         const madeTask = extractDataForTask();
         if(madeTask){
-            displayTaskInMain();
+            displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
             for(let a = 0; a < currProj.toDoList.length; a++){
                 console.log((a+1)+ " "+ currProj.toDoList[a].title);
             }
@@ -38,6 +38,7 @@ export function extractDataForTask(){
         const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, taskProj);
         currProj = findProjectInArr(taskProj);
         currProj.toDoList.push(taskMade);
+        taskFormClear();
         return taskMade;
     }else{
         displayNeedTitle();

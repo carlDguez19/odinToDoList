@@ -4,8 +4,8 @@ import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 //import { projOverlay } from "./menuEventListeners";
 
-const projTaskAdd = dqs(".projAdd");
-const projRemButton = dqs(".projRemove");
+//const projTaskAdd = dqs(".projAdd");
+//const projRemButton = dqs(".projRemove");
 const projOverlay1 = document.querySelector(".newProjectOverlay");
 
 export function projectEListeners(){
