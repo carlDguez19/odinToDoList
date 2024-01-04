@@ -25,7 +25,7 @@ export var _testering = function(e){
         if(editButton){//this will be done once 'remove' is completed
             console.log("editButton clicked");
             editForm(currTitle.textContent);
-            const foundProj = findProjectInArr(currTitle);//this will be left till the end
+            //const foundProj = findProjectInArr(currTitle);//this will be left till the end
             for(let a = 0; a < projArr.length; a++){
                 console.log((a+1)+ " "+ projArr[a].title)
             }
@@ -43,7 +43,8 @@ export var _testering = function(e){
         }
         else if(addTaskButton){
             taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
-            taskOverlayListeners();
+            const foundProj = findProjectInArr(currTitle);
+            taskOverlayListeners(foundProj);//add proj as param here!!! find proj on line before this
         }
 }
 

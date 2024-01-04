@@ -15,7 +15,7 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     taskLI.appendChild(taskDateInput);
     taskLI.appendChild(taskCheckbox);
 
-    taskLI.textContent = task.tTitle;
+    taskLI.textContent = task.tTitle + "  " + task.tDue;
 
     projUL.appendChild(taskLI);
 }

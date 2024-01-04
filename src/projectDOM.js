@@ -4,6 +4,7 @@ import Edit from '../src/imgs/edit.png';
 import { dqs } from './menuEventListeners';
 import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
+import { displayTaskInMain } from './taskDOM';
 
 const mainSec = dqs(".projectSection");
 
@@ -73,10 +74,20 @@ export function displayProjectInMain(project){
     mainSec.appendChild(taskSecUL);
     
     //check for tasks with a loop and display each
+    checkForTasks(project);
 
     //call eventListener here
     projectEListeners();//WILL HAVE TO ADD EVENT LISTENERS FOR TASKS HERE???
     console.log("this console log is after the projectElisteners it looks like its working??");
+}
+
+function checkForTasks(proj){
+    //given proj as param we will check if it contains any tasks that need to be created
+    const i = 0;
+    while(proj.toDoList){
+        displayTaskInMain(proj.toDoList[i]);
+        i++;
+    }
 }
 
 export function clearMain(){

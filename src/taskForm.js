@@ -2,11 +2,12 @@ import { dqs } from "./menuEventListeners";
 import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { Task } from "./taskClass";
+import { displayTaskInMain } from "./taskDOM";
 
 export const taskOverlay = dqs(".newTaskOverlay");
-const currProj = {};
+//const currProj = {};//MIGHT BE OK TO PLACE WITHIN extractDataForTask func
 
-export function taskOverlayListeners(){
+export function taskOverlayListeners(projectParam123){
     const taskClose = dqs(".taskCloseButton");
     const taskSubmit = dqs(".taskSubmitButton");
 
@@ -16,7 +17,7 @@ export function taskOverlayListeners(){
     });
     taskSubmit.addEventListener('click', function(){
         taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
-        const madeTask = extractDataForTask();
+        const madeTask = extractDataForTask(projectParam123);
         if(madeTask){
             displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
             for(let a = 0; a < currProj.toDoList.length; a++){
@@ -27,17 +28,18 @@ export function taskOverlayListeners(){
     });
 }
 
-export function extractDataForTask(){
+export function extractDataForTask(project1234){
     const taskTitle = document.getElementById("tTitle").value;
     const taskDesc = document.getElementById("tDescription").value;
     const taskDueDate = document.getElementById("tDueDate").value;
     const taskPrio = document.getElementById("tTaskPrio").value;
-    const taskProj = dqs(".projectNameMain");
+    const taskProj = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
 
     if(taskTitle && taskDueDate){
-        const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, taskProj);
-        currProj = findProjectInArr(taskProj);
-        currProj.toDoList.push(taskMade);
+        console.log("hereiam");
+        const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, project1234.title);//taskProj as last param
+        //const currProj = findProjectInArr(taskProj);
+        project.toDoList.push(taskMade);//currProj.toDoList.push(taskMade); ERROR IS HAPPENING HERE NEED TO FIND A WAY TO ACCES THE ARRAY AND PUSH INTO IT
         taskFormClear();
         return taskMade;
     }else{
