@@ -2,20 +2,21 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     const projUL = document.querySelector(".todoUL");
 
     const taskLI = document.createElement('li');
-    taskLI.classList.add("todo");
+    //taskLI.classList.add("todo");
 
     const taskCheckbox = document.createElement('input');
     taskCheckbox.type = "checkbox";
-    taskCheckbox.classList.add("todoCheck");
+    //taskCheckbox.classList.add("todoCheck");
 
     const taskDateInput = document.createElement('input');
     taskDateInput.type = "date";
-    taskDateInput.classList.add("todoDate");
+    //taskDateInput.classList.add("todoDate");
 
+    taskLI.textContent = task.tTitle + "  " + task.tDue;
     taskLI.appendChild(taskDateInput);
     taskLI.appendChild(taskCheckbox);
 
-    taskLI.textContent = task.tTitle + "  " + task.tDue;
+    taskLI.classList.add("todo");
 
     projUL.appendChild(taskLI);
 }
