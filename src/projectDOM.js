@@ -83,11 +83,17 @@ export function displayProjectInMain(project){
 
 function checkForTasks(proj){
     //given proj as param we will check if it contains any tasks that need to be created
-    const i = 0;
-    while(proj.toDoList){
-        displayTaskInMain(proj.toDoList[i]);
-        i++;
+    const taskArr = proj.toDoList;
+    if(taskArr){
+        for(var i = 0; i < taskArr.length; i++){
+            displayTaskInMain(taskArr[i]);
+        }
     }
+    // const i = 0;
+    // while(proj.toDoList){
+    //     displayTaskInMain(proj.toDoList[i]);
+    //     i++;
+    // }
 }
 
 export function clearMain(){

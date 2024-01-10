@@ -10,8 +10,8 @@ projectOverlayStuff();
 displayProjectInMain({title: "defaultProject", description: "This is a default project. You can also create your own :)"});
 addProjectToSidebar("defaultProject");
 projArr[0] = {title: "defaultProject", description: "This is a default project. You can also create your own :)"};
-//taskOverlayListeners();
-//projectEListeners();
+taskOverlayListeners();//THIS WAS COMMENTED OUT
+projectEListeners();//THIS WAS COMMENTED OUT
 // let proj1 = new Project("carlosBruh", "apiuf");
 // console.log(proj1.name);
 // console.log(proj1.description);

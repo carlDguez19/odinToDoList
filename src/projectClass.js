@@ -12,8 +12,14 @@ export class Project{
         return t;
     }
 
+    printTasks(){
+        for(var i = 0; i < this.toDos.length; i++){
+            console.log(this.toDos[i]);
+        }
+    }
+
     get numOfTasks(){
-        return this._toDos.length;//placed underscore
+        return this.toDos.length;//placed underscore
     }
 
     get title(){
@@ -23,7 +29,7 @@ export class Project{
         return this._description;
     }
     get toDoList(){//get array then push a toDo
-        return this._toDos;
+        return this.toDos;
     }
 
     set title(newTitle){

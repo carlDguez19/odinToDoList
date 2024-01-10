@@ -32,6 +32,7 @@ function _taskSubmit(){
     }
     taskFormClear();
     clearEvLis();
+    
     //PLACE THIS INSIDE A SEPERATE FUNCTION document.removeEventListener('click', function inside eventListener for submit task form)&%&%&%&%&%&%
 }
 
