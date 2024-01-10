@@ -21,7 +21,7 @@ export function taskOverlayListeners(){
     taskSubmit.addEventListener('click', _taskSubmit);
 }
 
-function _taskSubmit(){
+export function _taskSubmit(){
     taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
     const madeTask = extractDataForTask();
     if(madeTask){
@@ -53,8 +53,9 @@ export function extractDataForTask(proj){
 
     const fndProj = findProjectInArr(taskProj);
 
+
     if(taskTitle && taskDueDate){
-        console.log("hereiam");
+        console.log(fndProj.title);
         const taskMade = fndProj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, fndProj.title);
         //const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, proj.title);//taskProj as last param
         //const currProj = findProjectInArr(taskProj);
