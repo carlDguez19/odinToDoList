@@ -43,9 +43,9 @@ export var _testering = function(e){
         }
         else if(addTaskButton){
             taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
-            const foundProj = findProjectInArr(currTitle.textContent);
-            console.log("foundProjectInArr: " + foundProj.title);
-            taskOverlayListeners(foundProj);//add proj as param here!!! find proj on line before this
+            //const foundProj = findProjectInArr(currTitle.textContent);
+            //console.log("foundProjectInArr: " + foundProj.title);
+            taskOverlayListeners();//add proj as param here!!! find proj on line before this
         }
 }
 

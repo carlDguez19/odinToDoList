@@ -1,32 +1,42 @@
 import { dqs } from "./menuEventListeners";
 import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
-import { Task } from "./taskClass";
+//import { _testering } from "./projectEventListeners";
+//import { Task } from "./taskClass";
 import { displayTaskInMain } from "./taskDOM";
 
 export const taskOverlay = dqs(".newTaskOverlay");
 //const currProj = {};//MIGHT BE OK TO PLACE WITHIN extractDataForTask func
+const taskClose = dqs(".taskCloseButton");
+const taskSubmit = dqs(".taskSubmitButton");
 
-export function taskOverlayListeners(project){
-    const taskClose = dqs(".taskCloseButton");
-    const taskSubmit = dqs(".taskSubmitButton");
+export function taskOverlayListeners(){
+    // const taskClose = dqs(".taskCloseButton");
+    // const taskSubmit = dqs(".taskSubmitButton");
 
     taskClose.addEventListener('click', function(){
         taskFormClear();
         taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
     });
-    taskSubmit.addEventListener('click', function(event){
-        event.preventDefault();
-        taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
-        const madeTask = extractDataForTask(project);
-        if(madeTask){
-            displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
-            // for(let a = 0; a < currProj.toDoList.length; a++){   TRY TO DISPLAY ALL TASKS
-            //     console.log((a+1)+ " "+ currProj.toDoList[a].title);
-            // }
-        }
-        taskFormClear();
-    });
+    taskSubmit.addEventListener('click', _taskSubmit());
+}
+
+function _taskSubmit(){
+    taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
+    const madeTask = extractDataForTask();
+    if(madeTask){
+        displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
+        // for(let a = 0; a < currProj.toDoList.length; a++){   TRY TO DISPLAY ALL TASKS
+        //     console.log((a+1)+ " "+ currProj.toDoList[a].title);
+        // }
+    }
+    taskFormClear();
+    clearEvLis();
+    //PLACE THIS INSIDE A SEPERATE FUNCTION document.removeEventListener('click', function inside eventListener for submit task form)&%&%&%&%&%&%
+}
+
+function clearEvLis(){
+    taskSubmit.removeEventListener('click', _taskSubmit);
 }
 
 export function extractDataForTask(proj){
@@ -34,11 +44,17 @@ export function extractDataForTask(proj){
     const taskDesc = document.getElementById("tDescription").value;
     const taskDueDate = document.getElementById("tDueDate").value;
     const taskPrio = document.getElementById("tTaskPrio").value;
-    //const taskProj = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
+    
+    const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
+    const taskProj = temp.textContent;
+    
+    console.log(taskProj);
+
+    const fndProj = findProjectInArr(taskProj);
 
     if(taskTitle && taskDueDate){
         console.log("hereiam");
-        const taskMade = proj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, proj.title);
+        const taskMade = fndProj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, fndProj.title);
         //const taskMade = new Task(taskTitle, taskDesc, taskDueDate, taskPrio, proj.title);//taskProj as last param
         //const currProj = findProjectInArr(taskProj);
         //project.toDoList.push(taskMade);//currProj.toDoList.push(taskMade); ERROR IS HAPPENING HERE NEED TO FIND A WAY TO ACCES THE ARRAY AND PUSH INTO IT
