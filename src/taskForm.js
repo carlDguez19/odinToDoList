@@ -18,7 +18,7 @@ export function taskOverlayListeners(){
         taskFormClear();
         taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
     });
-    taskSubmit.addEventListener('click', _taskSubmit());
+    taskSubmit.addEventListener('click', _taskSubmit);
 }
 
 function _taskSubmit(){
