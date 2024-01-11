@@ -58,14 +58,16 @@ function removeProjArr(projName){
     }
 }
 
-function editForm(projectTitle){
+function editForm(projectTitle){//param is current title it will fill the input title box
     projOverlay1.style.animation = 'projectSlideDown 1.5s forwards';
     const titleIn = dqs("#title");
     titleIn.value = projectTitle;
 
-    //add eventListener for submit and cancel buttons on project form
-    //hopefully they will do something different???
+    //the project form will push in a new project with a new title and desc
+    //Grab the title and desc of this "new" proj and replace for info on currProj
+    //afterwards remove last entry on projArr
 }
+
 export function findProjectInArr(title){//MIGHT NOT NEED THIS MIGHT NOT NEED THIS MIGHT NOT NEED THIS
     //console.log("looking for project in arr")
     let index = 0;
