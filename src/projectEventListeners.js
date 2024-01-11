@@ -3,6 +3,7 @@ import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 import { removeProjectFromSidebar } from "./projectDOM";
+import { projectOverlayStuff } from "./projectForm";
 //import { projOverlay } from "./menuEventListeners";
 
 //const projTaskAdd = dqs(".projAdd");
@@ -24,11 +25,16 @@ export var _testering = function(e){
         const addTaskButton = e.target.matches(".projAdd");
         const currTitle = dqs(".projectNameMain");
         if(editButton){//this will be done once 'remove' is completed
+            const ogSizeArr = projArr.length;
             console.log("editButton clicked");
             editForm(currTitle.textContent);
             //const foundProj = findProjectInArr(currTitle);//this will be left till the end
             for(let a = 0; a < projArr.length; a++){
                 console.log((a+1)+ " "+ projArr[a].title)
+            }
+            projectOverlayStuff();
+            if(projArr.length > ogSizeArr){
+                editProjectInArr(projArr[-1]);
             }
         }else if(removeButton){
             //const currTitle = dqs(".projectNameMain");
