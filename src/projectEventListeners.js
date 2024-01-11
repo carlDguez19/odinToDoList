@@ -2,6 +2,7 @@ import { dqs } from "./menuEventListeners";
 import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
+import { removeProjectFromSidebar } from "./projectDOM";
 //import { projOverlay } from "./menuEventListeners";
 
 //const projTaskAdd = dqs(".projAdd");
@@ -32,7 +33,7 @@ export var _testering = function(e){
         }else if(removeButton){
             //const currTitle = dqs(".projectNameMain");
             console.log("removeButton clicked");
-            removeProjectSide(currTitle.textContent);
+            removeProjectFromSidebar(currTitle.textContent);
             removeProjArr(currTitle.textContent);
             clearMain();
             //const sideBar = dqs(".sidebar-menu");
@@ -47,16 +48,6 @@ export var _testering = function(e){
             //console.log("foundProjectInArr: " + foundProj.title);
             taskOverlayListeners();//add proj as param here!!! find proj on line before this
         }
-}
-
-function removeProjectSide(projName){
-    const sidebarProj = dqs(".sidebarProject");
-    const sidebarProjChildren = sidebarProj.children;
-    for(let i = 0; i < sidebarProjChildren.length; i++){
-        if(sidebarProjChildren[i].textContent == projName){
-            sidebarProj.removeChild(sidebarProjChildren[i]);
-        }
-    }
 }
 
 function removeProjArr(projName){

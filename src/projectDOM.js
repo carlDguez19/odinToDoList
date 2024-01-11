@@ -15,6 +15,15 @@ export function addProjectToSidebar(projectTitle){
     projTitle.classList.add('projectNameSidebar');
     projSide.appendChild(projTitle);
 }
+export function removeProjectFromSidebar(projectTitle){
+    const sidebarProj = dqs(".sidebarProject");
+    const sidebarProjChildren = sidebarProj.children;
+    for(let i = 0; i < sidebarProjChildren.length; i++){
+        if(sidebarProjChildren[i].textContent == projectTitle){
+            sidebarProj.removeChild(sidebarProjChildren[i]);
+        }
+    }
+}
 
 export function displayProjectInMain(project){
     clearMain();
