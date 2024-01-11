@@ -157,16 +157,21 @@ button{
 }
 li{
     list-style-type: none;
-    width: 300px;
+    width: 500px;
     height: 40px;
     border-radius: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly;/*space evenly*/
     text-align: center;
     background-color: blue;
     margin-top: 10px;
 }
+
+.taskButtons{
+    display: flex;
+}
+
 .projectOptions{
     display: flex;
     justify-content: center;
