@@ -1,7 +1,7 @@
 import Remove from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import Edit from '../src/imgs/edit.png';
-import { dqs } from './menuEventListeners';
+import { dqs, projArr } from './menuEventListeners';
 import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
 import { displayTaskInMain } from './taskDOM';
@@ -21,6 +21,16 @@ export function removeProjectFromSidebar(projectTitle){
     for(let i = 0; i < sidebarProjChildren.length; i++){
         if(sidebarProjChildren[i].textContent == projectTitle){
             sidebarProj.removeChild(sidebarProjChildren[i]);
+        }
+    }
+}
+export function editProjectInSidebar(projectTitle){
+    const sidebarProj = dqs(".sidebarProject");
+    const sidebarProjChildren = sidebarProj.children;
+    for(let i = 0; i < sidebarProjChildren.length; i++){
+        if(sidebarProjChildren[i].textContent == projectTitle){
+            console.log("found sidebar project named " + sidebarProjChildren[i].textContent);
+            sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length-1].title;
         }
     }
 }

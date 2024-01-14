@@ -1,9 +1,8 @@
 import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
-import { addProjectToSidebar } from "./projectDOM";
-import { displayProjectInMain } from "./projectDOM";
+import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain } from "./projectDOM";
 //import { projectEListeners } from "./projectEventListeners";
-import { _testering } from "./projectEventListeners";
+import { _testering, findProjectInArr, removeProjArr, editButtonClicked, currTitle2 } from "./projectEventListeners";
 
 const projOverlay = document.querySelector(".newProjectOverlay");
 
@@ -23,17 +22,38 @@ export function projectOverlayStuff(){
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         const projectParam = extractDataForProject();
         //createProjectDOM(projectParam);//this will be in projectDOM.js file
-        if(projectParam){
-            //console.log("project obj returned successfully");
-            addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file
-            displayProjectInMain(projectParam);
-            //projectEListeners();
+        if(editButtonClicked){
+            editProjectInArr(currTitle2.textContent);
+            editProjectInSidebar(currTitle2.textContent);
+            removeProjArr(projectParam.title);
+            editButtonClicked = false;
             for(let a = 0; a < projArr.length; a++){
                 console.log((a+1)+ " "+ projArr[a].title)
             }
+        }else{
+            if(projectParam){
+                //console.log("project obj returned successfully");
+                addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file
+                displayProjectInMain(projectParam);
+                //projectEListeners();
+                for(let a = 0; a < projArr.length; a++){
+                    console.log((a+1)+ " "+ projArr[a].title)
+                }
+            }
+            projectFormClear();
         }
-        projectFormClear();
     })
+}
+
+function editProjectInArr(replaceTitle){
+    console.log("editTitle being replaced " + replaceTitle);
+    for(let i = 0; i < projArr.length-1; i++){
+        console.log("inside edit func arr " + projArr[i].title);
+        if(projArr[i].title == replaceTitle){
+            projArr[i].title = projArr[projArr.length-1].title;
+            projArr[i].description = projArr[projArr.length-1].description;
+        }
+    }
 }
 
 function extractDataForProject(){

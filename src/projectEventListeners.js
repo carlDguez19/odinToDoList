@@ -3,12 +3,14 @@ import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 import { removeProjectFromSidebar } from "./projectDOM";
-import { projectOverlayStuff } from "./projectForm";
+//import { projectOverlayStuff } from "./projectForm";
 //import { projOverlay } from "./menuEventListeners";
 
 //const projTaskAdd = dqs(".projAdd");
 //const projRemButton = dqs(".projRemove");
 const projOverlay1 = document.querySelector(".newProjectOverlay");
+export let editButtonClicked = false;
+export let currTitle2 = null;//= dqs(".projectNameMain");
 
 export function projectEListeners(){
     document.addEventListener('click', _testering)
@@ -24,18 +26,22 @@ export var _testering = function(e){
         const removeButton = e.target.matches(".projRemove");
         const addTaskButton = e.target.matches(".projAdd");
         const currTitle = dqs(".projectNameMain");
+        currTitle2 = currTitle;
         if(editButton){//this will be done once 'remove' is completed
-            const ogSizeArr = projArr.length;
+            //const ogSizeArr = projArr.length;
             console.log("editButton clicked");
             editForm(currTitle.textContent);
             //const foundProj = findProjectInArr(currTitle);//this will be left till the end
-            for(let a = 0; a < projArr.length; a++){
-                console.log((a+1)+ " "+ projArr[a].title)
-            }
-            projectOverlayStuff();
-            if(projArr.length > ogSizeArr){
-                editProjectInArr(projArr[-1]);
-            }
+            
+            // for(let a = 0; a < projArr.length; a++){
+            //     console.log((a+1)+ " "+ projArr[a].title)
+            // }
+            
+            editButtonClicked = true;
+            //projectOverlayStuff();
+            // if(projArr.length > ogSizeArr){
+            //     editProjectInArr(projArr[-1]);
+            // }
         }else if(removeButton){
             //const currTitle = dqs(".projectNameMain");
             console.log("removeButton clicked");
@@ -56,7 +62,7 @@ export var _testering = function(e){
         }
 }
 
-function removeProjArr(projName){
+export function removeProjArr(projName){
     for(let i = 0; i < projArr.length; i++){
         if(projArr[i].title == projName){
             projArr.splice(i, 1);
