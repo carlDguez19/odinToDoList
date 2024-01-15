@@ -35,6 +35,11 @@ export function editProjectInSidebar(projectTitle){
     }
 }
 
+export function editProjectNameMain(){
+    const OGProjName = dqs(".projectNameMain");
+    OGProjName.textContent = projArr[projArr.length-1].title;
+}
+
 export function displayProjectInMain(project){
     clearMain();
     const projDiv = document.createElement('div');

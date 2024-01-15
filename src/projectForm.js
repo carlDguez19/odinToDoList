@@ -1,6 +1,6 @@
 import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
-import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain } from "./projectDOM";
+import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain, editProjectNameMain } from "./projectDOM";
 //import { projectEListeners } from "./projectEventListeners";
 import { _testering, findProjectInArr, removeProjArr, editButtonClicked, currTitle2 } from "./projectEventListeners";
 
@@ -25,6 +25,7 @@ export function projectOverlayStuff(){
         if(editButtonClicked){
             editProjectInArr(currTitle2.textContent);
             editProjectInSidebar(currTitle2.textContent);
+            editProjectNameMain();
             removeProjArr(projectParam.title);
             editButtonClicked = false;
             for(let a = 0; a < projArr.length; a++){
