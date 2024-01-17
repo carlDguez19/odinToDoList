@@ -30,7 +30,7 @@ export function editProjectInSidebar(projectTitle){
     for(let i = 0; i < sidebarProjChildren.length; i++){
         if(sidebarProjChildren[i].textContent == projectTitle){
             console.log("found sidebar project named " + sidebarProjChildren[i].textContent);
-            sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length-1].title;
+            sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length].title;//projArr[sidebarProjChildren.length-1].title
         }
     }
 }
