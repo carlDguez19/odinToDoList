@@ -26,10 +26,15 @@ export function projectOverlayStuff(){
             editProjectInArr(currTitle2.textContent);
             editProjectInSidebar(currTitle2.textContent);
             editProjectNameMain();
-            removeProjArr(projectParam.title);
-            editButtonClicked = false;
+            console.log("BEFORE removeProjArr function we have the following projects: ")
             for(let a = 0; a < projArr.length; a++){
                 console.log((a+1)+ " "+ projArr[a].title)
+            }
+            projArr.splice(projArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
+            editButtonClicked = false;
+            console.log("AFTER removeProjArr function we have the following projects: ")
+            for(let b= 0; b < projArr.length; b++){
+                console.log((b+1)+ " "+ projArr[b].title)
             }
         }else{
             if(projectParam){
@@ -48,12 +53,16 @@ export function projectOverlayStuff(){
 
 function editProjectInArr(replaceTitle){
     console.log("editTitle being replaced " + replaceTitle);
-    for(let i = 0; i < projArr.length-1; i++){
+    for(let i = 0; i < projArr.length; i++){//for(let i = 0; i < projArr.length-1; i++){
         console.log("inside edit func arr " + projArr[i].title);
         if(projArr[i].title == replaceTitle){
             projArr[i].title = projArr[projArr.length-1].title;
             projArr[i].description = projArr[projArr.length-1].description;
         }
+    }
+    console.log("inside editProjectInArr all projects after edit: ");
+    for(let a = 0; a < projArr.length; a++){
+        console.log(projArr[a].title);
     }
 }
 

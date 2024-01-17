@@ -102,7 +102,7 @@ export function displayProjectInMain(project){
 
     //call eventListener here
     projectEListeners();//WILL HAVE TO ADD EVENT LISTENERS FOR TASKS HERE???
-    console.log("this console log is after the projectElisteners it looks like its working??");
+    //console.log("this console log is after the projectElisteners it looks like its working??");
 }
 
 function checkForTasks(proj){

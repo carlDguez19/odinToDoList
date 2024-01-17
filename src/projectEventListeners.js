@@ -51,6 +51,7 @@ export var _testering = function(e){
             //const sideBar = dqs(".sidebar-menu");
             //sideBar.style.animation = 'menuSlideOn 1.5s forwards';
             for(let a = 0; a < projArr.length; a++){
+                console.log("inside removeButton in _testering");
                 console.log((a+1)+ " "+ projArr[a].title)
             }
         }
@@ -62,13 +63,14 @@ export var _testering = function(e){
         }
 }
 
-export function removeProjArr(projName){
-    for(let i = 0; i < projArr.length; i++){
-        if(projArr[i].title == projName){
-            projArr.splice(i, 1);
-        }
-    }
-}
+// export function removeProjArr(){
+//     projArr.splice(projArr.length-1,1);//%&%&%&%&%&%&%&%NO NEED TO HAVE THIS IN A SEPERATE FUNCTION???
+//     // for(let i = 0; i < projArr.length; i++){
+//     //     if(projArr[i].title == projName){
+//     //         projArr.splice(i, 1);
+//     //     }
+//     // }
+// }
 
 function editForm(projectTitle){//param is current title it will fill the input title box
     projOverlay1.style.animation = 'projectSlideDown 1.5s forwards';
