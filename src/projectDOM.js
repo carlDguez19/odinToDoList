@@ -29,7 +29,7 @@ export function editProjectInSidebar(projectTitle){
     const sidebarProjChildren = sidebarProj.children;
     for(let i = 0; i < sidebarProjChildren.length; i++){
         if(sidebarProjChildren[i].textContent == projectTitle){
-            console.log("found sidebar project named " + sidebarProjChildren[i].textContent);
+            //console.log("found sidebar project named " + sidebarProjChildren[i].textContent); DEBUG
             sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length].title;//projArr[sidebarProjChildren.length-1].title
         }
     }
@@ -102,7 +102,6 @@ export function displayProjectInMain(project){
 
     //call eventListener here
     projectEListeners();//WILL HAVE TO ADD EVENT LISTENERS FOR TASKS HERE???
-    //console.log("this console log is after the projectElisteners it looks like its working??");
 }
 
 function checkForTasks(proj){
@@ -113,11 +112,6 @@ function checkForTasks(proj){
             displayTaskInMain(taskArr[i]);
         }
     }
-    // const i = 0;
-    // while(proj.toDoList){
-    //     displayTaskInMain(proj.toDoList[i]);
-    //     i++;
-    // }
 }
 
 export function clearMain(){

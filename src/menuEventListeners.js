@@ -4,6 +4,7 @@ import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import { displayProjectInMain } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
+
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 export let projArr = [];
 
@@ -48,17 +49,15 @@ export function menuEventListen(){
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
     });
     createProjCont.addEventListener('click', function(){
-        //console.log("create project button clicked!!");
         sideBar.style.animation = 'menuSlideClose 1.5s forwards';
         projOverlay.style.animation = 'projectSlideDown 1.5s forwards';
     });
     sideBar.addEventListener('click', (e) => {
         if(e.target.tagName === 'SPAN'){
-            console.log("the following is e.target.value");
-            console.log(e.target.textContent);
+            // console.log("the following is e.target.value");DEBUGDEBUGDEBUG
+            // console.log(e.target.textContent);
             const dispProj = findProjectInArr(e.target.textContent)
             displayProjectInMain(dispProj);
-            //displayTaskInMain(dispProj);//THIS MIGHT HAVE TO BE CALLED WITHIN DISPLAYPROJECTINMAIN WITH THE PROJECT AND UL PARAMETERS
         }
     });
 }

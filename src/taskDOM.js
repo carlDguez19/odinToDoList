@@ -1,48 +1,56 @@
 import Edit from '../src/imgs/edit.png';
 import Remove from '../src/imgs/close.png';
+import { taskEListeners } from './taskEventListeners';
 
 export function displayTaskInMain(task){//(project, ul) might be needed as params but probs not
     const projUL = document.querySelector(".todoUL");
 
     const taskLI = document.createElement('li');
-    //taskLI.classList.add("todo");
+
+    const dateDisp = document.createElement('div');
+    dateDisp.textContent = task.tDue;
+    dateDisp.classList.add("dateTaskDisp");
 
     const buttonDiv = document.createElement('div');
 
     const taskCheckbox = document.createElement('input');
     taskCheckbox.type = "checkbox";
-    //taskCheckbox.classList.add("todoCheck");
 
     const taskDateInput = document.createElement('input');
     taskDateInput.type = "date";
-    //taskDateInput.classList.add("todoDate");
+    taskDateInput.value = task.tDue;
 
     const taskEditDiv = document.createElement('div');
     const taskRemoveDiv = document.createElement('div');
 
     const taskEditIcon = new Image();
     taskEditIcon.src = Edit;
-    taskEditIcon.classList.add('projEdit');
+    taskEditIcon.classList.add('taskProjEdit');
 
     const taskRemoveIcon = new Image();
     taskRemoveIcon.src = Remove;
-    taskRemoveIcon.classList.add('projRemove');
+    taskRemoveIcon.classList.add('taskProjRemove');
 
     taskEditDiv.appendChild(taskEditIcon);
     taskRemoveDiv.appendChild(taskRemoveIcon);
 
-    taskLI.textContent = task.tTitle + "  " + task.tDue;
-    taskLI.appendChild(taskDateInput);
+    taskLI.textContent = task.tTitle;//task.tTitle + "  " + task.tDue
 
-    buttonDiv.appendChild(taskCheckbox);
     buttonDiv.appendChild(taskEditDiv);
     buttonDiv.appendChild(taskRemoveDiv);
+    buttonDiv.appendChild(taskCheckbox);
 
     buttonDiv.classList.add('taskButtons');
 
+    //taskLI.appendChild(dateDisp);
+
     taskLI.appendChild(buttonDiv);
+
+    taskLI.appendChild(taskDateInput);
 
     taskLI.classList.add("todo");
 
     projUL.appendChild(taskLI);
+
+    taskEListeners();
 }
