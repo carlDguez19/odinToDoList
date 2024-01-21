@@ -12,9 +12,18 @@ export class Project{
         return t;
     }
 
-    printTasks(){
+    removeTaskFromArr(titleName){
         for(var i = 0; i < this.toDos.length; i++){
-            console.log(this.toDos[i]);
+            if(this.toDos[i].tTitle == titleName){
+                this.toDos.splice(i,1);
+            }
+        }
+    }
+
+    printTasks(){
+        console.log("current tasks in project: ");
+        for(var i = 0; i < this.toDos.length; i++){
+            console.log(this.toDos[i].tTitle);
         }
     }
 

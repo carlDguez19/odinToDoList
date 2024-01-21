@@ -1,6 +1,7 @@
 import Edit from '../src/imgs/edit.png';
 import Remove from '../src/imgs/close.png';
 import { taskEListeners } from './taskEventListeners';
+import { dqs } from './menuEventListeners';
 
 export function displayTaskInMain(task){//(project, ul) might be needed as params but probs not
     const projUL = document.querySelector(".todoUL");
@@ -53,4 +54,15 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     projUL.appendChild(taskLI);
 
     taskEListeners();
+}
+
+export function clearTaskMain(task){
+    //get task ul section and remove li via parameter(like removing a project from sidebar)
+    const ulParent = dqs(".todoUL");
+    const liTaskChildren = ulParent.children;
+    for(let i = 0; i < liTaskChildren.length; i++){
+        if(liTaskChildren[i].textContent == task){
+            ulParent.removeChild(liTaskChildren[i]);
+        }
+    }
 }

@@ -29,7 +29,7 @@ export var _testering = function(e){
         else if(removeButton){
             //const currTitle = dqs(".projectNameMain");
             removeProjectFromSidebar(currTitle.textContent);
-            removeProjArr(currTitle.textContent);
+            removeProjArr(currTitle.textContent);//????????????????????????????????????????????
             clearMain();
         }
         else if(addTaskButton){
@@ -49,6 +49,7 @@ export function findProjectInArr(title){//MIGHT NOT NEED THIS MIGHT NOT NEED THI
     for(let i = 0; i < projArr.length; i++){
         index = i;
         if(projArr[i].title == title){
+            console.log("project found");
             return projArr[i];
         }
     }

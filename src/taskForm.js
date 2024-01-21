@@ -37,14 +37,11 @@ export function extractDataForTask(proj){
     
     const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
     const taskProj = temp.textContent;
-    
-    console.log(taskProj);
 
     const fndProj = findProjectInArr(taskProj);
 
 
     if(taskTitle && taskDueDate){
-        console.log(fndProj.title);
         const taskMade = fndProj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, fndProj.title);
         taskFormClear();
         return taskMade;
