@@ -2,6 +2,7 @@ import { dqs } from "./menuEventListeners";
 import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { displayTaskInMain } from "./taskDOM";
+import { taskEditButton } from "./taskEventListeners";
 
 export const taskOverlay = dqs(".newTaskOverlay");
 const taskClose = dqs(".taskCloseButton");
@@ -16,6 +17,10 @@ export function taskOverlayListeners(){
 }
 
 export function _taskSubmit(){
+    if(taskEditButton){
+        //insert edit algorithm here
+        taskEditButton = false;
+    }
     taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
     const madeTask = extractDataForTask();
     if(madeTask){

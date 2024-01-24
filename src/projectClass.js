@@ -12,6 +12,14 @@ export class Project{
         return t;
     }
 
+    findTask(titleName){
+        for(var i = 0; i < this.toDos.length; i++){
+            if(this.toDos[i].tTitle == titleName){
+                return this.toDos[i];
+            }
+        }
+    }
+
     removeTaskFromArr(titleName){
         for(var i = 0; i < this.toDos.length; i++){
             if(this.toDos[i].tTitle == titleName){
