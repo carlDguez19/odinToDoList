@@ -1,6 +1,6 @@
 import Edit from '../src/imgs/edit.png';
 import Remove from '../src/imgs/close.png';
-import { taskEListeners } from './taskEventListeners';
+import { _taskTestering, taskEListeners } from './taskEventListeners';
 import { dqs } from './menuEventListeners';
 
 export function displayTaskInMain(task){//(project, ul) might be needed as params but probs not
@@ -65,4 +65,5 @@ export function clearTaskMain(task){
             ulParent.removeChild(liTaskChildren[i]);
         }
     }
+    //document.removeEventListener('click', _taskTestering);IF MULTIPLE TASKS, OTHER TASKS BUTTONS WONT WORK
 }

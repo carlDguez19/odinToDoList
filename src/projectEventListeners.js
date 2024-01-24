@@ -31,6 +31,10 @@ export var _testering = function(e){
             removeProjectFromSidebar(currTitle.textContent);
             removeProjArr(currTitle.textContent);//????????????????????????????????????????????
             clearMain();
+            console.log("current projects in array are: ");
+            for(let i = 0; i < projArr.length; i++){
+                console.log(projArr[i].title);
+            }
         }
         else if(addTaskButton){
             taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
@@ -42,6 +46,14 @@ function editForm(projectTitle){//param is current title it will fill the input 
     projOverlay1.style.animation = 'projectSlideDown 1.5s forwards';
     const titleIn = dqs("#title");
     titleIn.value = projectTitle;
+}
+
+export function removeProjArr(title){
+    for(let i = 0; i < projArr.length; i++){
+        if(projArr[i].title == title){
+            projArr.splice(i,1);
+        }
+    }
 }
 
 export function findProjectInArr(title){//MIGHT NOT NEED THIS MIGHT NOT NEED THIS MIGHT NOT NEED THIS
