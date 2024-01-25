@@ -17,17 +17,26 @@ export function taskOverlayListeners(){
 }
 
 export function _taskSubmit(){
+    taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
     if(taskEditButton){
         //insert edit algorithm here
+        const taskName = e.target.parentElement.parentElement.parentElement.textContent;
+        const projNameEd = dqs(".projectNameMain");
+        const projEd = findProjectInArr(projNameEd.textContent);
+        const modedTask = projEd.getLastTask()
+        projEd.editTask(taskName);
+        e.target.parentElement.parentElement.parentElement.textContent = modedTask.tTitle;
+        projEd.removeTaskFromArr(modedTask.tTitle);
         taskEditButton = false;
     }
-    taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
-    const madeTask = extractDataForTask();
-    if(madeTask){
-        displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
+    else{
+        const madeTask = extractDataForTask();
+        if(madeTask){
+            displayTaskInMain(madeTask);//current project is already detected in extractDataForTask func..may not need proj and ul as params
+        }
+        taskFormClear();
+        clearEvLis();    
     }
-    taskFormClear();
-    clearEvLis();
 }
 
 function clearEvLis(){

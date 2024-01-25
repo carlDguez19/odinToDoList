@@ -6,6 +6,23 @@ export class Project{
         this.description = description;
         this.toDos = [];
     }
+
+    getLastTask(){
+        return this.toDos[this.toDos.length-1];
+    }
+
+    editTask(taskName){
+        for(let i = 0; i < this.toDos.length; i++){
+            if(this.toDos[i].tTitle == taskName){
+                this.toDos[i].tTitle = this.toDos[this.toDos.length-1].tTitle;
+                this.toDos[i].tDesc = this.toDos[this.toDos.length-1].tDesc;
+                this.toDos[i].tDue = this.toDos[this.toDos.length-1].tDue;
+                this.toDos[i].tPrio = this.toDos[this.toDos.length-1].tPrio;
+                this.toDos[i].tProj = this.toDos[this.toDos.length-1].tProj;
+            }
+        }
+    }
+
     newTask(Ttitle, Tdesc, Tdue, Tprio, Tproj){
         let t = new Task(Ttitle, Tdesc, Tdue, Tprio, Tproj);
         this.toDos.push(t);//placed underscore
