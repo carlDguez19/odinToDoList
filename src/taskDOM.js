@@ -2,7 +2,7 @@ import Edit from '../src/imgs/edit.png';
 import Remove from '../src/imgs/close.png';
 import { _taskTestering } from './taskEventListeners';
 import { dqs } from './menuEventListeners';
-import { taskEListeners } from './taskForm';
+import { taskEListeners } from './taskEventListeners';
 
 export function displayTaskInMain(task){//(project, ul) might be needed as params but probs not
     const projUL = document.querySelector(".todoUL");

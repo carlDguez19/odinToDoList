@@ -22,6 +22,7 @@ export var _testering = function(e){
         const addTaskButton = e.target.matches(".projAdd");
         const currTitle = dqs(".projectNameMain");
         currTitle2 = currTitle;
+        
         if(editButton){//this will be done once 'remove' is completed
             editForm(currTitle.textContent);
             editButtonClicked = true;

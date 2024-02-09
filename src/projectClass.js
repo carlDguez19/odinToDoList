@@ -11,6 +11,10 @@ export class Project{
         return this.toDos[this.toDos.length-1];
     }
 
+    removeLastTask(){
+        this.toDos.splice(this.toDos.length-1,1);
+    }
+
     editTask(taskName){
         for(let i = 0; i < this.toDos.length; i++){
             if(this.toDos[i].tTitle == taskName){
