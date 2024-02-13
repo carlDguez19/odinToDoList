@@ -10,7 +10,7 @@ body{
 }
 
 /* project overlay */
-.newProjectOverlay, .errorProjectOverlay{
+.newProjectOverlay, .errorProjectOverlay, .newTaskOverlay, .infoDescOverlay{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -24,9 +24,22 @@ body{
     height: 500px;
     background-color: purple;
     transform: translate(-50%, -50%);
+}
+.infoDescOverlay{
+    white-space: pre;
+}
+.infoSec{
+    background-color: #b5af14;
+    width: 350px;
+    height: 350px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: 400;
+    color: #231f20;
+    white-space: normal;
 }
 
-.newTaskOverlay{
+/* .newTaskOverlay{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -40,7 +53,7 @@ body{
     height: 500px;
     background-color: purple;
     transform: translate(-50%, -50%);
-}
+} */
 .buttonCont, .taskButtonCont{
     margin-top: 15px;
 }
@@ -155,11 +168,23 @@ button{
     text-align: center;
     white-space: nowrap;
 }
-.dateTaskDisp{
+.titleTaskDisp, .projectNameMain{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16pt;
     font-weight: bold;
+    background-color: orange;
+    width: 180px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
+.titleTaskDisp:active, .projectNameMain:active{
+    scale: .95;
+}
+
 li{
     list-style-type: none;
     width: 500px;
@@ -188,6 +213,7 @@ li{
     margin: 0 5px;
     cursor: pointer;
 }
+
 /* sidebarsidebarsidebarsidebarsidebarsidebar css */
 .sidebar-menu{
     position: absolute;

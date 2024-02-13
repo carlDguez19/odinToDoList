@@ -9,18 +9,18 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
 
     const taskLI = document.createElement('li');
 
-    const dateDisp = document.createElement('div');
-    dateDisp.textContent = task.tDue;
-    dateDisp.classList.add("dateTaskDisp");
+    const titleDisp = document.createElement('div');
+    titleDisp.textContent = task.tTitle;
+    titleDisp.classList.add("titleTaskDisp");
 
     const buttonDiv = document.createElement('div');
 
     const taskCheckbox = document.createElement('input');
     taskCheckbox.type = "checkbox";
 
-    const taskDateInput = document.createElement('input');
-    taskDateInput.type = "date";
-    taskDateInput.value = task.tDue;
+    // const taskDateInput = document.createElement('input');
+    // taskDateInput.type = "date";
+    // taskDateInput.value = task.tDue;
 
     const taskEditDiv = document.createElement('div');
     const taskRemoveDiv = document.createElement('div');
@@ -36,7 +36,7 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     taskEditDiv.appendChild(taskEditIcon);
     taskRemoveDiv.appendChild(taskRemoveIcon);
 
-    taskLI.textContent = task.tTitle;//task.tTitle + "  " + task.tDue
+    //taskLI.textContent = task.tTitle;//task.tTitle + "  " + task.tDue
 
     buttonDiv.appendChild(taskEditDiv);
     buttonDiv.appendChild(taskRemoveDiv);
@@ -44,11 +44,11 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
 
     buttonDiv.classList.add('taskButtons');
 
-    //taskLI.appendChild(dateDisp);
+    taskLI.appendChild(titleDisp);
 
     taskLI.appendChild(buttonDiv);
 
-    taskLI.appendChild(taskDateInput);
+    //taskLI.appendChild();
 
     taskLI.classList.add("todo");
 

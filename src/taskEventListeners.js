@@ -4,12 +4,15 @@ import { Project } from "./projectClass";
 import { Task } from "./taskClass";
 import { clearTaskMain } from "./taskDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
+import { infoOverlayListener } from "./infoDescListeners";
 
 export function taskEListeners(){
     document.addEventListener('click', _taskTestering)
     //add the eventListener for the change of the date picker
 };
 
+export const infoOverlay = dqs(".infoDescOverlay");
+export const infoSection = dqs(".infoSec");
 export let taskEditButton = false;
 export let editTask = null;
 let taskRemButton = false;
@@ -21,8 +24,11 @@ let taskRemButton = false;
 // }
 
 export function _taskTestering(e){//var _taskTestering = function(e){
-
-    //const taskName = getTaskNameLi();
+    //we can optimize this by putting... 
+        // const projNameEd = dqs(".projectNameMain");//current project
+        // const projEd = findProjectInArr(projNameEd.textContent);
+        // editTask = projEd.findTask(taskName.textContent);//current task
+    //out here instead of repeating code in each "if" and "else if"
 
     const taskName = e.target.parentElement.parentElement.parentElement;
     //giveTaskName(taskName.textContent);
@@ -55,10 +61,26 @@ export function _taskTestering(e){//var _taskTestering = function(e){
         clearTaskMain(taskName.textContent);
         //code here for removal of individual task
     }
+    // else if task name "button" bring down infoDescOverlay with all info of task
+    else if(e.target.matches(".titleTaskDisp")){
+        const taskName2 = e.target.parentElement;
+        const projNameEd = dqs(".projectNameMain");//current project
+        const projEd = findProjectInArr(projNameEd.textContent);
+        const infoTask = projEd.findTask(taskName2.textContent);//current task
+        infoDescOverlayTask(infoTask);
+    }
+    //checkbox here too blaaaah
 }
 
 export function getTaskNameLi(){
     return theThing.target.parentElement.parentElement.parentElement;
+}
+
+function infoDescOverlayTask(task){
+    infoOverlay.style.animation = "projectSlideDown 1.5s forwards";
+
+    infoSection.textContent += "DUE DATE: " + task.tDue + " DESCRIPTION: " + task.tDesc;
+    infoOverlayListener();
 }
 
 export function editTaskForm(task){

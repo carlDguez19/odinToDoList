@@ -3,6 +3,8 @@ import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 import { removeProjectFromSidebar } from "./projectDOM";
+import { infoOverlay, infoSection } from "./taskEventListeners";
+import { infoOverlayListener } from "./infoDescListeners";
 
 const projOverlay1 = document.querySelector(".newProjectOverlay");
 export let editButtonClicked = false;
@@ -41,6 +43,17 @@ export var _testering = function(e){
             taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
             taskOverlayListeners();//add proj as param here!!! find proj on line before this
         }
+        else if(currTitle){
+            const projInfo = findProjectInArr(currTitle.textContent);
+            infoDescOverlayProj(projInfo);
+        }
+}
+
+function infoDescOverlayProj(proj){
+    infoOverlay.style.animation = "projectSlideDown 1.5s forwards";
+
+    infoSection.textContent = "DESCRIPTION: " + proj.description;
+    infoOverlayListener();
 }
 
 function editForm(projectTitle){//param is current title it will fill the input title box
