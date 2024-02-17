@@ -1,5 +1,5 @@
 import { dqs } from "./menuEventListeners";
-import { infoOverlay, infoSection } from "./taskEventListeners";
+import { infoOverlay, infoSection, titleDispClicked } from "./taskEventListeners";
 
 export function infoOverlayListener(){
     const infoClose = dqs(".infoCloseButton");
@@ -7,6 +7,7 @@ export function infoOverlayListener(){
 }
 
 function _infoTestering(){
+    titleDispClicked = false;
     infoOverlay.style.animation = "projectSlideUp 1.5s forwards";
     setTimeout(function(){
         infoSection.textContent = "";

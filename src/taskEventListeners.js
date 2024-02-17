@@ -15,6 +15,7 @@ export const infoOverlay = dqs(".infoDescOverlay");
 export const infoSection = dqs(".infoSec");
 export let taskEditButton = false;
 export let editTask = null;
+export let titleDispClicked = false;
 let taskRemButton = false;
 //const projNameRem = dqs(".projectNameMain");PLACEMENT OF THIS OUT HERE CAUSES MAJOR BUG
 //const projRemEd = findProjectInArr(projNameRem.textContent);WIPES THE ENTIRE DISPLAY AREA AND MENU(EVERYTHING BASICALLY O_o)
@@ -63,6 +64,7 @@ export function _taskTestering(e){//var _taskTestering = function(e){
     }
     // else if task name "button" bring down infoDescOverlay with all info of task
     else if(e.target.matches(".titleTaskDisp")){
+        titleDispClicked = true;
         const taskName2 = e.target.parentElement;
         const projNameEd = dqs(".projectNameMain");//current project
         const projEd = findProjectInArr(projNameEd.textContent);

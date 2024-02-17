@@ -22,6 +22,7 @@ export var _testering = function(e){
         const editButton = e.target.matches(".projEdit");
         const removeButton = e.target.matches(".projRemove");
         const addTaskButton = e.target.matches(".projAdd");
+        const projTitle = e.target.matches(".projectNameMain");
         const currTitle = dqs(".projectNameMain");
         currTitle2 = currTitle;
         
@@ -43,7 +44,7 @@ export var _testering = function(e){
             taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
             taskOverlayListeners();//add proj as param here!!! find proj on line before this
         }
-        else if(currTitle){
+        else if(projTitle){
             const projInfo = findProjectInArr(currTitle.textContent);
             infoDescOverlayProj(projInfo);
         }
