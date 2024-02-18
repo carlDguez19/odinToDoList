@@ -51,6 +51,16 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     //taskLI.appendChild();
 
     taskLI.classList.add("todo");
+    const prio = task.tPrio;
+    if(prio == 'high'){
+        taskLI.classList.add("highPrio");
+    }
+    else if(prio == "medium"){
+        taskLI.classList.add("mediumPrio");
+    }
+    else if(prio == "low"){
+        taskLI.classList.add("lowPrio");
+    }
 
     projUL.appendChild(taskLI);
 

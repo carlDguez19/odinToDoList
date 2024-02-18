@@ -185,6 +185,16 @@ button{
     scale: .95;
 }
 
+.highPrio{
+    background-color: darkred;
+}
+.mediumPrio{
+    background-color: gold;
+}
+.lowPrio{
+    background-color: forestgreen;
+}
+
 li{
     list-style-type: none;
     width: 500px;
