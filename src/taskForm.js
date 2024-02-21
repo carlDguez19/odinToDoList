@@ -3,7 +3,7 @@ import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { displayTaskInMain } from "./taskDOM";
 import { clearTaskMain } from "./taskDOM";
-import { taskEditButton, editTask } from "./taskEventListeners";
+import { taskEditButton, editTask, editTaskProjValue } from "./taskEventListeners";
 
 export const taskOverlay = dqs(".newTaskOverlay");
 const taskClose = dqs(".taskCloseButton");
@@ -27,8 +27,8 @@ export function _taskSubmit(){
         // // // // //console.log("taskName in taskSubmit poop: " + taskName.textContent);
         //REMOVE OLD TASK USING ALGORITHM FROM REMOVETASK SECTION (editTask is task to be removed)
         const moddedTask = extractDataForTask();
-        const projNameEd = dqs(".projectNameMain");
-        const projEd = findProjectInArr(projNameEd.textContent);
+        //const projNameEd = dqs(".projectNameMain");
+        const projEd = findProjectInArr(moddedTask.tProj);
         clearTaskMain(editTask.tTitle);
         projEd.editTask(editTask.tTitle);
         displayTaskInMain(moddedTask);
@@ -56,6 +56,7 @@ export function _taskSubmit(){
 
 function clearEvLis(){
     taskSubmit.removeEventListener('click', _taskSubmit);
+    editTask = null;
 }
 
 export function extractDataForTask(){
@@ -63,15 +64,12 @@ export function extractDataForTask(){
     const taskDesc = document.getElementById("tDescription").value;
     const taskDueDate = document.getElementById("tDueDate").value;
     const taskPrio = document.getElementById("tTaskPrio").value;
+    const taskProj = getProjectBelonging();
     
-    const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
-    const taskProj = temp.textContent;
-
     const fndProj = findProjectInArr(taskProj);
 
-
     if(taskTitle && taskDueDate){
-        const taskMade = fndProj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, fndProj.title);
+        const taskMade = fndProj.newTask(taskTitle, taskDesc, taskDueDate, taskPrio, taskProj);
         taskFormClear();
         return taskMade;
     }else{
@@ -79,6 +77,18 @@ export function extractDataForTask(){
         taskFormClear();
         taskOverlay.style.animation = "projectSlideDown 1.5s forwards";
         return;
+    }
+}
+
+function getProjectBelonging(){
+    if(editTask){
+        return editTask.tProj;
+    }else{
+        const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
+        return temp.textContent;
+
+        // const temporary = findProjectInArr(taskProj);
+        // return temporary;
     }
 }
 

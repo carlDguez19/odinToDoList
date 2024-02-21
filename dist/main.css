@@ -273,17 +273,20 @@ li{
     background-color: var(--newBlack);
 }
 
-.createProj{
+.createProj, .allTasksSide, .todayTasksSide, .weekTasksSide, .importantHighTasksSide{
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-.createProj:hover{
+.allTasksSide, .todayTasksSide, .weekTasksSide, .importantHighTasksSide{
+    margin-top: 15px;
+}
+.createProj:hover, .allTasksSide:hover, .todayTasksSide:hover, .weekTasksSide:hover, .importantHighTasksSide:hover{
     background-color: blue;
     border-radius: 15px;
 }
-.createProj:active{
+.createProj:active, .allTasksSide:active, .todayTasksSide:active, .weekTasksSide:active, .importantHighTasksSide:active{
     background-color: darkblue;
     border-radius: 15px;
 }

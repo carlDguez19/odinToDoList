@@ -5,6 +5,9 @@ import { Task } from "./taskClass";
 import { clearTaskMain } from "./taskDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 import { infoOverlayListener } from "./infoDescListeners";
+import { projArr } from "./menuEventListeners";
+
+//export const editTaskProjValue = null;
 
 export function taskEListeners(){
     document.addEventListener('click', _taskTestering)
@@ -44,9 +47,14 @@ export function _taskTestering(e){//var _taskTestering = function(e){
         //bring taskform down find task and prefill with taskName and date
         //set taskEditButton = true and on taskForm.js set 'if(taskEditButton)' on submit button
         //that will encapsulate edit algorithm
-        const projNameEd = dqs(".projectNameMain");//current project
-        const projEd = findProjectInArr(projNameEd.textContent);
-        editTask = projEd.findTask(taskName.textContent);//current task
+        
+        // const projNameEd = dqs(".projectNameMain");//current project
+        // const projEd = findProjectInArr(projNameEd.textContent);
+        // editTask = projEd.findTask(taskName.textContent);//current task
+
+        editTask = checkThroughAllTasks(taskName.textContent);
+
+        //THIS WILL BE REPLACED WITH THE NEW ALGORITHM TO FIND TASK HOPEFULLY IT WORKS
 
         //ADD TASK USING FUNCTION FROM taskDOM.js file (displayTaskInMain(editTask))
         //remove
@@ -55,8 +63,9 @@ export function _taskTestering(e){//var _taskTestering = function(e){
     else if(e.target.matches(".taskProjRemove")){//"else if" if all three buttons are in this section
         taskRemButton = true;
         console.log(taskName.textContent);
-        const projNameRem = dqs(".projectNameMain");
-        const projRem = findProjectInArr(projNameRem.textContent);//project class will have a func that can go through its task array and remove a specified task :)
+        //const projNameRem = dqs(".projectNameMain");
+        const taskTemp = checkThroughAllTasks(taskName.textContent);
+        const projRem = findProjectInArr(taskTemp.tProj);//project class will have a func that can go through its task array and remove a specified task :)
         projRem.removeTaskFromArr(taskName.textContent);
         projRem.printTasks();
         clearTaskMain(taskName.textContent);
@@ -66,12 +75,29 @@ export function _taskTestering(e){//var _taskTestering = function(e){
     else if(e.target.matches(".titleTaskDisp")){
         titleDispClicked = true;
         const taskName2 = e.target.parentElement;
-        const projNameEd = dqs(".projectNameMain");//current project
-        const projEd = findProjectInArr(projNameEd.textContent);
-        const infoTask = projEd.findTask(taskName2.textContent);//current task
+        // const projNameEd = dqs(".projectNameMain");//current project
+        // const projEd = findProjectInArr(projNameEd.textContent);
+        // const infoTask = projEd.findTask(taskName2.textContent);//current task
+        const infoTask = checkThroughAllTasks(taskName2.textContent);
+
+
         infoDescOverlayTask(infoTask);
     }
     //checkbox here too blaaaah
+}
+
+function checkThroughAllTasks(taskName){
+    for(let i = 0; i < projArr.length; i++){
+        //checkForTasks(projArr[i]);
+        const taskArr = projArr[i].toDoList;
+        if(taskArr){
+            for(var a = 0; a < taskArr.length; a++){
+                if(taskArr[a].tTitle == taskName){
+                    return taskArr[a];
+                }
+            }
+        }
+    }
 }
 
 export function getTaskNameLi(){
@@ -81,7 +107,7 @@ export function getTaskNameLi(){
 function infoDescOverlayTask(task){
     infoOverlay.style.animation = "projectSlideDown 1.5s forwards";
 
-    infoSection.textContent += "DUE DATE: " + task.tDue + " DESCRIPTION: " + task.tDesc;
+    infoSection.textContent += "DUE DATE: " + task.tDue + " DESCRIPTION: " + task.tDesc + " PROJECT: " + task.tProj;
     infoOverlayListener();
 }
 
@@ -92,5 +118,7 @@ export function editTaskForm(task){
     const taskDateForm = dqs("#tDueDate");
     taskTitleForm.value = task.tTitle;
     taskDateForm.value = task.tDue;
+    //editTaskProjValue = task.tProj;
+    //WILL USE EDIT TASK TO GET ITS .tProj FOR PROJECT BELONGING
     taskOverlayListeners();// MIGHT NOT BE NEEDED
 }

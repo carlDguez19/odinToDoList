@@ -6,7 +6,7 @@ import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
 import { displayTaskInMain } from './taskDOM';
 
-const mainSec = dqs(".projectSection");
+export const mainSec = dqs(".projectSection");
 
 export function addProjectToSidebar(projectTitle){
     const projSide = dqs(".sidebarProject");
@@ -104,7 +104,7 @@ export function displayProjectInMain(project){
     projectEListeners();//WILL HAVE TO ADD EVENT LISTENERS FOR TASKS HERE???
 }
 
-function checkForTasks(proj){
+export function checkForTasks(proj){
     //given proj as param we will check if it contains any tasks that need to be created
     const taskArr = proj.toDoList;
     if(taskArr){

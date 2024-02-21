@@ -50,7 +50,7 @@ export class Project{
     }
 
     printTasks(){
-        console.log("current tasks in project: ");
+        console.log("current tasks in project " + this.title + ": ");
         for(var i = 0; i < this.toDos.length; i++){
             console.log(this.toDos[i].tTitle);
         }

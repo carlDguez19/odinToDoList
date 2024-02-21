@@ -2,8 +2,9 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
-import { displayProjectInMain } from './projectDOM';
+import { displayProjectInMain, checkForTasks, clearMain, mainSec } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
+
 
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 export let projArr = [];
@@ -40,6 +41,7 @@ export function menuEventListen(){
     createProjCont.appendChild(createProjIcon);
 
     const sideBar = document.querySelector(".sidebar-menu");
+    const allTasks = document.querySelector(".allTasksSide");
     const projOverlay = document.querySelector(".newProjectOverlay");
 
     menuContainer.addEventListener('click', function(){
@@ -60,4 +62,17 @@ export function menuEventListen(){
             displayProjectInMain(dispProj);
         }
     });
+    allTasks.addEventListener('click', displayAllTasks);
+}
+
+function displayAllTasks(){
+    clearMain();
+    const allTaskSecUL = document.createElement('ul');
+    allTaskSecUL.classList.add("todoUL")
+
+    mainSec.appendChild(allTaskSecUL);
+    
+    for(let i = 0; i < projArr.length; i++){
+        checkForTasks(projArr[i]);
+    }
 }
