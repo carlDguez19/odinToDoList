@@ -114,6 +114,17 @@ export function checkForTasks(proj){
     }
 }
 
+export function checkForImportantTasks(proj){
+    const taskArr = proj.toDoList;
+    if(taskArr){
+        for(var i = 0; i < taskArr.length; i++){
+            if(taskArr[i].tPrio == 'high'){
+                displayTaskInMain(taskArr[i]);
+            }
+        }
+    }
+}
+
 export function clearMain(){
     document.removeEventListener('click', _testering);
     while(mainSec.firstChild){
