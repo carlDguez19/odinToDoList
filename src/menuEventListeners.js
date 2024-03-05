@@ -2,7 +2,7 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
-import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks } from './projectDOM';
+import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks, checkForWeekTasks } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
 
 
@@ -73,7 +73,19 @@ export function menuEventListen(){
 
     todayTasks.addEventListener('click', displayTodaysTasks);
 
-    //weekTasks.addEventListener('click', displayWeekTasks);
+    weekTasks.addEventListener('click', displayWeekTasks);
+}
+
+function displayWeekTasks(){
+    clearMain();
+    const allTaskSecUL = document.createElement('ul');
+    allTaskSecUL.classList.add("todoUL")
+
+    mainSec.appendChild(allTaskSecUL);
+
+    for(let i = 0; i < projArr.length; i++){
+        checkForWeekTasks(projArr[i]);       
+    }
 }
 
 function displayTodaysTasks(){

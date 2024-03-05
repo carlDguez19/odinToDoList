@@ -5,7 +5,7 @@ import { dqs, projArr } from './menuEventListeners';
 import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
 import { displayTaskInMain } from './taskDOM';
-import { isEqual, format, parse } from 'date-fns';
+import { isEqual, format, parse, addDays, isWithinInterval, isThisWeek } from 'date-fns';
 
 export const mainSec = dqs(".projectSection");
 
@@ -133,14 +133,35 @@ export function checkForTodaysTasks(proj){
     const todayDate = new Date(today);
     if(taskArr){
         for(var i = 0; i < taskArr.length; i++){
-            //check dates here.
-            const wrapformatTaskDate = format(taskArr[i].tDue, 'yyyy-MM-dd');
+            const wrapformatTaskDate = format(taskArr[i].tDue, 'yyyy-MM-dd');//check dates here
             const ftd = new Date(wrapformatTaskDate);
             //const valueTest = isEqual(ftd, todayDate);
             // console.log("format task date: " + ftd);
             // console.log("todays date: " + today);
             // console.log("isEqual value: " + valueTest);
             if(isEqual(ftd, todayDate)){
+                displayTaskInMain(taskArr[i]);
+            }
+        }
+    }
+}
+
+export function checkForWeekTasks(proj){
+    const taskArr = proj.toDoList;
+    const wrapDate = new Date();
+    const today = format(wrapDate, 'yyyy-MM-dd');
+    const todayDate = new Date(today);
+    if(taskArr){
+        for(var i = 0; i < taskArr.length; i++){
+            const wrapformatTaskDate = format(taskArr[i].tDue, 'yyyy-MM-dd');//check dates here
+            const ftd = new Date(wrapformatTaskDate);
+
+            //const futureDate = addDays(ftd, 7);
+            //const valueTest = isEqual(ftd, todayDate);
+            // console.log("format task date: " + ftd);
+            // console.log("todays date: " + today);
+            // console.log("isEqual value: " + valueTest);
+            if(isThisWeek(ftd)){//isWithinInterval
                 displayTaskInMain(taskArr[i]);
             }
         }
