@@ -2,12 +2,14 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
-import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks } from './projectDOM';
+import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
 
 
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 export let projArr = [];
+//export let todayArr = []; NOT NEEDED SAVE SOME MEM
+//export let weekArr = []; NOT NEEDED SAVE SOME MEMORY AND SOME COMPLEXITY ???
 
 export function dqs(c){
     return document.querySelector(c);
@@ -43,6 +45,8 @@ export function menuEventListen(){
     const sideBar = document.querySelector(".sidebar-menu");
     const allTasks = document.querySelector(".allTasksSide");
     const impTasks = document.querySelector(".importantHighTasksSide");
+    const todayTasks = document.querySelector(".todayTasksSide");
+    const weekTasks = document.querySelector(".weekTasksSide");
     const projOverlay = document.querySelector(".newProjectOverlay");
 
     menuContainer.addEventListener('click', function(){
@@ -66,7 +70,24 @@ export function menuEventListen(){
     allTasks.addEventListener('click', displayAllTasks);
 
     impTasks.addEventListener('click', displayImportantTasks);
+
+    todayTasks.addEventListener('click', displayTodaysTasks);
+
+    //weekTasks.addEventListener('click', displayWeekTasks);
 }
+
+function displayTodaysTasks(){
+    clearMain();
+    const allTaskSecUL = document.createElement('ul');
+    allTaskSecUL.classList.add("todoUL")
+
+    mainSec.appendChild(allTaskSecUL);
+
+    for(let i = 0; i < projArr.length; i++){
+        checkForTodaysTasks(projArr[i]);       
+    }
+}
+
 function displayImportantTasks(){
     clearMain();
     const allTaskSecUL = document.createElement('ul');

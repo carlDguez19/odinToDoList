@@ -6,6 +6,7 @@ import { clearTaskMain } from "./taskDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
 import { infoOverlayListener } from "./infoDescListeners";
 import { projArr } from "./menuEventListeners";
+import { parse, format } from "date-fns";
 
 //export const editTaskProjValue = null;
 
@@ -117,7 +118,9 @@ export function editTaskForm(task){
     const taskTitleForm = dqs("#tTitle");
     const taskDateForm = dqs("#tDueDate");
     taskTitleForm.value = task.tTitle;
-    taskDateForm.value = task.tDue;
+
+    const formatDate = format(task.tDue, 'yyyy-MM-dd');
+    taskDateForm.value = formatDate;
     //editTaskProjValue = task.tProj;
     //WILL USE EDIT TASK TO GET ITS .tProj FOR PROJECT BELONGING
     taskOverlayListeners();// MIGHT NOT BE NEEDED

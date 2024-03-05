@@ -5,6 +5,7 @@ import { dqs, projArr } from './menuEventListeners';
 import { projectEListeners } from './projectEventListeners';
 import { _testering } from './projectEventListeners';
 import { displayTaskInMain } from './taskDOM';
+import { isEqual, format, parse } from 'date-fns';
 
 export const mainSec = dqs(".projectSection");
 
@@ -119,6 +120,27 @@ export function checkForImportantTasks(proj){
     if(taskArr){
         for(var i = 0; i < taskArr.length; i++){
             if(taskArr[i].tPrio == 'high'){
+                displayTaskInMain(taskArr[i]);
+            }
+        }
+    }
+}
+
+export function checkForTodaysTasks(proj){
+    const taskArr = proj.toDoList;
+    const wrapDate = new Date();
+    const today = format(wrapDate, 'yyyy-MM-dd');
+    const todayDate = new Date(today);
+    if(taskArr){
+        for(var i = 0; i < taskArr.length; i++){
+            //check dates here.
+            const wrapformatTaskDate = format(taskArr[i].tDue, 'yyyy-MM-dd');
+            const ftd = new Date(wrapformatTaskDate);
+            //const valueTest = isEqual(ftd, todayDate);
+            // console.log("format task date: " + ftd);
+            // console.log("todays date: " + today);
+            // console.log("isEqual value: " + valueTest);
+            if(isEqual(ftd, todayDate)){
                 displayTaskInMain(taskArr[i]);
             }
         }
