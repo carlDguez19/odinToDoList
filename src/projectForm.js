@@ -18,11 +18,11 @@ export function projectOverlayStuff(){
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         const projectParam = extractDataForProject();
         if(editButtonClicked){
-            editProjectInArr(currTitle2.textContent);
-            editProjectInSidebar(currTitle2.textContent);
-            editProjectNameMain();
+            editProjectInArr(currTitle2.textContent);//this method needs localStorage
+            editProjectInSidebar(currTitle2.textContent);//this method needs localStorage
+            editProjectNameMain();//this method needs localStorage MAYBE...but probably not
             projArr.splice(projArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
-            editButtonClicked = false;
+            editButtonClicked = false;//localStorage call first remove last entry then set for prev line
         }else{
             if(projectParam){
                 addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file

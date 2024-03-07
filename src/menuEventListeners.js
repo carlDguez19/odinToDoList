@@ -63,7 +63,7 @@ export function menuEventListen(){
         if(e.target.tagName === 'SPAN'){
             // console.log("the following is e.target.value");DEBUGDEBUGDEBUG
             // console.log(e.target.textContent);
-            const dispProj = findProjectInArr(e.target.textContent)
+            const dispProj = findProjectInArr(e.target.textContent)//localStorage
             displayProjectInMain(dispProj);
         }
     });
