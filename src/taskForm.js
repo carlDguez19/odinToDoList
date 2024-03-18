@@ -1,4 +1,4 @@
-import { dqs, todayArr, weekArr } from "./menuEventListeners";
+import { dqs } from "./menuEventListeners";//todayArr and weekArr will not be needed!!!!!
 import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { displayTaskInMain } from "./taskDOM";

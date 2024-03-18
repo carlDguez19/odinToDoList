@@ -7,7 +7,10 @@ import { findProjectInArr } from './projectEventListeners';
 
 
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
-export let projArr = [];
+
+export let projArr = localStorage.getItem('projects') ? JSON.parse(localStorage.getItem('projects')) : [];//this arr and task arr will be aquired from the localStorage%&%&%&%&%&%&%&%&%
+
+
 //export let todayArr = []; NOT NEEDED SAVE SOME MEM
 //export let weekArr = []; NOT NEEDED SAVE SOME MEMORY AND SOME COMPLEXITY ???
 
