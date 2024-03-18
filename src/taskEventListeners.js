@@ -62,12 +62,13 @@ export function _taskTestering(e){//var _taskTestering = function(e){
         editTaskForm(editTask);
     }
     else if(e.target.matches(".taskProjRemove")){//"else if" if all three buttons are in this section
+        //THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
         taskRemButton = true;
         console.log(taskName.textContent);
         //const projNameRem = dqs(".projectNameMain");
         const taskTemp = checkThroughAllTasks(taskName.textContent);
         const projRem = findProjectInArr(taskTemp.tProj);//project class will have a func that can go through its task array and remove a specified task :)
-        projRem.removeTaskFromArr(taskName.textContent);
+        projRem.removeTaskFromArr(taskName.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
         projRem.printTasks();
         clearTaskMain(taskName.textContent);
         //code here for removal of individual task

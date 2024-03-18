@@ -31,9 +31,9 @@ export var _testering = function(e){
             editButtonClicked = true;
         }
         else if(removeButton){
-            //const currTitle = dqs(".projectNameMain");
+            //const currTitle = dqs(".projectNameMain");//THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%
             removeProjectFromSidebar(currTitle.textContent);
-            removeProjArr(currTitle.textContent);//????????????????????????????????????????????
+            removeProjArr(currTitle.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
             clearMain();
             console.log("current projects in array are: ");
             for(let i = 0; i < projArr.length; i++){
