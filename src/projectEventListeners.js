@@ -33,7 +33,7 @@ export var _testering = function(e){
         else if(removeButton){
             //const currTitle = dqs(".projectNameMain");//THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%
             removeProjectFromSidebar(currTitle.textContent);
-            removeProjArr(currTitle.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
+            removeProjArr(currTitle.textContent);//localStorage DONEDONEDONEDONEDONE
             clearMain();
             console.log("current projects in array are: ");
             for(let i = 0; i < projArr.length; i++){
@@ -67,6 +67,7 @@ export function removeProjArr(title){
     for(let i = 0; i < projArr.length; i++){
         if(projArr[i].title == title){
             projArr.splice(i,1);
+            localStorage.setItem('projects', JSON.stringify(projArr));
         }
     }
 }
@@ -75,7 +76,7 @@ export function findProjectInArr(title){//MIGHT NOT NEED THIS MIGHT NOT NEED THI
     let index = 0;
     for(let i = 0; i < projArr.length; i++){
         index = i;
-        if(projArr[i].title == title){
+        if(projArr[i]._title == title){
             console.log("project found");
             return projArr[i];
         }

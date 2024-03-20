@@ -2,14 +2,41 @@ import Menu from '../src/imgs/menu.png'
 import Brand from '../src/imgs/WorkerAntsMod.png';
 import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
-import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks, checkForWeekTasks } from './projectDOM';
+import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks, checkForWeekTasks, addProjectToSidebar } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
 
 
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 
-export let projArr = localStorage.getItem('projects') ? JSON.parse(localStorage.getItem('projects')) : [];//this arr and task arr will be aquired from the localStorage%&%&%&%&%&%&%&%&%
+export let projArr = null;//determineProjArr();
+determineProjArr();
+//export const locSto = null;
+//let lSFound = null;
 
+// if(lSFound){
+//     for(let i = 0; i < projArr.length; i++){
+//         addProjectToSidebar(projArr[i].title);
+//     }
+// }
+
+function determineProjArr(){
+    if(localStorage.getItem('projects')){
+        //const locSto = true;
+        projArr =  JSON.parse(localStorage.getItem('projects'));
+        //call function to add project to sidebar or hardcode here        
+    }
+    else{
+        projArr = [];
+    }
+    //const locSto = false;
+    // let tempArr = [];
+    // return tempArr;
+}
+
+
+//localStorage.getItem('projects') ? JSON.parse(localStorage.getItem('projects')) : [];//this arr will be aquired from the localStorage%&%&%&%&%&%&%&%&%
+//above line will be if statement
+//if
 
 //export let todayArr = []; NOT NEEDED SAVE SOME MEM
 //export let weekArr = []; NOT NEEDED SAVE SOME MEMORY AND SOME COMPLEXITY ???

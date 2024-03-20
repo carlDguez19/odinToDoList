@@ -18,10 +18,11 @@ export function projectOverlayStuff(){
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         const projectParam = extractDataForProject();
         if(editButtonClicked){
-            editProjectInArr(currTitle2.textContent);//this method needs localStorage
-            editProjectInSidebar(currTitle2.textContent);//this method needs localStorage
+            editProjectInArr(currTitle2.textContent);//this method needs localStorage DONEDONEDONEDONEDONEDONE
+            editProjectInSidebar(currTitle2.textContent);//NO localStorage here
             editProjectNameMain();//this method needs localStorage MAYBE...but probably not
             projArr.splice(projArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
+            localStorage.setItem('projects', JSON.stringify(projArr));//this might not work without getItem again ??? not sure will have to test again by editing and refreshing a project
             editButtonClicked = false;//localStorage call first remove last entry then set for prev line
         }else{
             if(projectParam){
@@ -38,11 +39,12 @@ function editProjectInArr(replaceTitle){
         if(projArr[i].title == replaceTitle){
             projArr[i].title = projArr[projArr.length-1].title;
             projArr[i].description = projArr[projArr.length-1].description;
+            localStorage.setItem('projects', JSON.stringify(projArr));
         }
     }
 }
 
-function extractDataForProject(){
+function extractDataForProject(){//this will need localStorage aswell
     const titleInput = document.getElementById("title").value
     let descInput = document.getElementById("description").value;
 
@@ -50,6 +52,8 @@ function extractDataForProject(){
         //console.log("detected title");//debugging
         const projectMade = new Project(titleInput, descInput);
         projArr.push(projectMade);
+        localStorage.setItem('projects', JSON.stringify(projArr));
+        //localStorage.clear();
         return projectMade;
     }else{
         displayNeedTitle();// CAN INSERT DOM MANIPULATION TO SHIFT DOWN THE ERROR OVERLAY :)
