@@ -53,7 +53,7 @@ export var _testering = function(e){
 function infoDescOverlayProj(proj){
     infoOverlay.style.animation = "projectSlideDown 1.5s forwards";
 
-    infoSection.textContent = "DESCRIPTION: " + proj.description;
+    infoSection.textContent = "DESCRIPTION: " + proj._description;
     infoOverlayListener();
 }
 

@@ -23,7 +23,11 @@ function determineProjArr(){
     if(localStorage.getItem('projects')){
         //const locSto = true;
         projArr =  JSON.parse(localStorage.getItem('projects'));
-        //call function to add project to sidebar or hardcode here        
+        //call function to add project to sidebar or hardcode here
+        for(let i = 0; i < projArr.length; i++){
+            let titleProj = projArr[i]._title;
+            addProjectToSidebar(titleProj);
+        }
     }
     else{
         projArr = [];

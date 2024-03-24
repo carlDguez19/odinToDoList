@@ -54,11 +54,11 @@ export function displayProjectInMain(project){
 
     
     const projNameSpan = document.createElement('span');
-    if(project.title.length > 30){
-        let mainModProjTitle = project.title.slice(0,31);
+    if(project._title.length > 30){
+        let mainModProjTitle = project._title.slice(0,31);
         projNameSpan.textContent = mainModProjTitle + "...";
     }else{
-        projNameSpan.textContent = project.title;
+        projNameSpan.textContent = project._title;
     }
     projNameSpan.classList.add("projectNameMain");
 
