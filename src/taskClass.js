@@ -6,6 +6,7 @@ export class Task{
         this.tPrio = tPrio;
         this.tProj = tProj;
     }
+
     set tTitle(newtTitle){
         this._tTitle = newtTitle;
     }

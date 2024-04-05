@@ -1,9 +1,9 @@
-import { dqs } from "./menuEventListeners";
+import { dqs, taskArr } from "./menuEventListeners";
 import { findProjectInArr } from "./projectEventListeners";
 import { Project } from "./projectClass";
 import { Task } from "./taskClass";
 import { clearTaskMain } from "./taskDOM";
-import { taskOverlay, taskOverlayListeners } from "./taskForm";
+import { printTasks, taskOverlay, taskOverlayListeners } from "./taskForm";
 import { infoOverlayListener } from "./infoDescListeners";
 import { projArr } from "./menuEventListeners";
 import { parse, format } from "date-fns";
@@ -54,6 +54,7 @@ export function _taskTestering(e){//var _taskTestering = function(e){
         // editTask = projEd.findTask(taskName.textContent);//current task
 
         editTask = checkThroughAllTasks(taskName.textContent);
+        //might have to put this task into a new task object???
 
         //THIS WILL BE REPLACED WITH THE NEW ALGORITHM TO FIND TASK HOPEFULLY IT WORKS
 
@@ -67,9 +68,9 @@ export function _taskTestering(e){//var _taskTestering = function(e){
         console.log(taskName.textContent);
         //const projNameRem = dqs(".projectNameMain");
         const taskTemp = checkThroughAllTasks(taskName.textContent);
-        const projRem = findProjectInArr(taskTemp.tProj);//project class will have a func that can go through its task array and remove a specified task :)
-        projRem.removeTaskFromArr(taskName.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
-        projRem.printTasks();
+        //const projRem = findProjectInArr(taskTemp.tProj);//project class will have a func that can go through its task array and remove a specified task :)
+        removeTaskFromArr(taskName.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
+        printTasks(taskTemp._tProj);
         clearTaskMain(taskName.textContent);
         //code here for removal of individual task
     }
@@ -88,16 +89,19 @@ export function _taskTestering(e){//var _taskTestering = function(e){
     //checkbox here too blaaaah
 }
 
+function removeTaskFromArr(taskName){
+    for(var i = 0; i < taskArr.length; i++){
+        if(taskArr._tTitle == taskName){
+            taskArr.splice(i,1);
+            localStorage.setItem('tasks', JSON.stringify(taskArr));
+        }
+    }   
+}
+
 function checkThroughAllTasks(taskName){
-    for(let i = 0; i < projArr.length; i++){
-        //checkForTasks(projArr[i]);
-        const taskArr = projArr[i].toDoList;
-        if(taskArr){
-            for(var a = 0; a < taskArr.length; a++){
-                if(taskArr[a].tTitle == taskName){
-                    return taskArr[a];
-                }
-            }
+    for(var a = 0; a < taskArr.length; a++){
+        if(taskArr[a]._tTitle == taskName){
+            return taskArr[a];
         }
     }
 }
@@ -109,7 +113,7 @@ export function getTaskNameLi(){
 function infoDescOverlayTask(task){
     infoOverlay.style.animation = "projectSlideDown 1.5s forwards";
 
-    infoSection.textContent += "DUE DATE: " + task.tDue + " DESCRIPTION: " + task.tDesc + " PROJECT: " + task.tProj;
+    infoSection.textContent += "DUE DATE: " + task._tDue + " DESCRIPTION: " + task._tDesc + " PROJECT: " + task._tProj;
     infoOverlayListener();
 }
 

@@ -4,38 +4,58 @@ import Close from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import { displayProjectInMain, checkForTasks, clearMain, mainSec, checkForImportantTasks, checkForTodaysTasks, checkForWeekTasks, addProjectToSidebar } from './projectDOM';
 import { findProjectInArr } from './projectEventListeners';
+import { Project } from './projectClass';
+import { displayTaskInMain } from './taskDOM';
 
 
 //I NEED TO ADD A GLOBAL VARIABLE ARRAY THAT STORES ALL THE PROJECTS HERE
 
-export let projArr = null;//determineProjArr();
-determineProjArr();
-//export const locSto = null;
-//let lSFound = null;
+export let projArr = localStorage.getItem('projects') ? JSON.parse(localStorage.getItem('projects')) : [];//determineProjArr();
+export let taskArr = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 
-// if(lSFound){
-//     for(let i = 0; i < projArr.length; i++){
-//         addProjectToSidebar(projArr[i].title);
+if(projArr){
+    for(let i = 0; i < projArr.length; i++){
+        let titleProj = projArr[i]._title;
+        addProjectToSidebar(titleProj);
+    }
+}
+//ternary operator then immediately check if the array is empty or not
+
+// function determineTaskArr(){
+//     if(localStorage.getItem('tasks')){
+//         //const locSto = true;
+//         projArr =  JSON.parse(localStorage.getItem('tasks'));
+//         //call function to add project to sidebar or hardcode here
+//         // for(let i = 0; i < projArr.length; i++){
+//         //     let titleProj = projArr[i]._title;
+//         //     addProjectToSidebar(titleProj);
+//         // }
 //     }
+//     else{
+//         projArr = [];
+//     }
+//     //const locSto = false;
+//     // let tempArr = [];
+//     // return tempArr;
 // }
 
-function determineProjArr(){
-    if(localStorage.getItem('projects')){
-        //const locSto = true;
-        projArr =  JSON.parse(localStorage.getItem('projects'));
-        //call function to add project to sidebar or hardcode here
-        for(let i = 0; i < projArr.length; i++){
-            let titleProj = projArr[i]._title;
-            addProjectToSidebar(titleProj);
-        }
-    }
-    else{
-        projArr = [];
-    }
-    //const locSto = false;
-    // let tempArr = [];
-    // return tempArr;
-}
+// function determineProjArr(){
+//     if(localStorage.getItem('projects')){
+//         //const locSto = true;
+//         projArr =  JSON.parse(localStorage.getItem('projects'));
+//         //call function to add project to sidebar or hardcode here
+//         for(let i = 0; i < projArr.length; i++){
+//             let titleProj = projArr[i]._title;
+//             addProjectToSidebar(titleProj);
+//         }
+//     }
+//     else{
+//         projArr = [];
+//     }
+//     //const locSto = false;
+//     // let tempArr = [];
+//     // return tempArr;
+// }
 
 
 //localStorage.getItem('projects') ? JSON.parse(localStorage.getItem('projects')) : [];//this arr will be aquired from the localStorage%&%&%&%&%&%&%&%&%
@@ -97,8 +117,11 @@ export function menuEventListen(){
         if(e.target.tagName === 'SPAN'){
             // console.log("the following is e.target.value");DEBUGDEBUGDEBUG
             // console.log(e.target.textContent);
+            console.log(e.target.textContent);
             const dispProj = findProjectInArr(e.target.textContent)//localStorage might not be needed here &%&%&%&%
-            displayProjectInMain(dispProj);
+            //create a proj object and transplant dispProj to it then pass that new proj to the displayProjectMain function
+            const tempObj = new Project(dispProj._title, dispProj._description);
+            displayProjectInMain(tempObj);
         }
     });
     allTasks.addEventListener('click', displayAllTasks);
@@ -117,9 +140,7 @@ function displayWeekTasks(){
 
     mainSec.appendChild(allTaskSecUL);
 
-    for(let i = 0; i < projArr.length; i++){
-        checkForWeekTasks(projArr[i]);       
-    }
+    checkForWeekTasks(taskArr);//given taskArr since toDoList is not in project objects any longer
 }
 
 function displayTodaysTasks(){
@@ -129,9 +150,7 @@ function displayTodaysTasks(){
 
     mainSec.appendChild(allTaskSecUL);
 
-    for(let i = 0; i < projArr.length; i++){
-        checkForTodaysTasks(projArr[i]);       
-    }
+    checkForTodaysTasks(taskArr);       
 }
 
 function displayImportantTasks(){
@@ -141,9 +160,7 @@ function displayImportantTasks(){
 
     mainSec.appendChild(allTaskSecUL);
 
-    for(let i = 0; i < projArr.length; i++){
-        checkForImportantTasks(projArr[i]);       
-    }
+    checkForImportantTasks(taskArr);
 }
 
 function displayAllTasks(){
@@ -153,7 +170,8 @@ function displayAllTasks(){
 
     mainSec.appendChild(allTaskSecUL);
 
-    for(let i = 0; i < projArr.length; i++){
-        checkForTasks(projArr[i]);
+    for(let i = 0; i < taskArr.length; i++){
+        displayTaskInMain(taskArr[i]);
     }
+    //checkForTasks(projArr[i]);
 }

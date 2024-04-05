@@ -1,4 +1,4 @@
-import { dqs } from "./menuEventListeners";
+import { dqs, taskArr } from "./menuEventListeners";
 import { projArr } from "./menuEventListeners";
 import { clearMain } from "./projectDOM";
 import { taskOverlay, taskOverlayListeners } from "./taskForm";
@@ -34,10 +34,11 @@ export var _testering = function(e){
             //const currTitle = dqs(".projectNameMain");//THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%
             removeProjectFromSidebar(currTitle.textContent);
             removeProjArr(currTitle.textContent);//localStorage DONEDONEDONEDONEDONE
+            removeTasksOfRemProj(currTitle.textContent);
             clearMain();
             console.log("current projects in array are: ");
             for(let i = 0; i < projArr.length; i++){
-                console.log(projArr[i].title);
+                console.log(projArr[i]._title);
             }
         }
         else if(addTaskButton){
@@ -48,6 +49,15 @@ export var _testering = function(e){
             const projInfo = findProjectInArr(currTitle.textContent);
             infoDescOverlayProj(projInfo);
         }
+}
+
+function removeTasksOfRemProj(proj){
+    for(let i = 0; i < taskArr.length; i++){
+        if(taskArr[i]._tProj == proj){
+            taskArr.splice(i, 1);
+        }
+    }
+    localStorage.setItem('tasks', JSON.stringify(taskArr));
 }
 
 function infoDescOverlayProj(proj){
@@ -65,7 +75,7 @@ function editForm(projectTitle){//param is current title it will fill the input 
 
 export function removeProjArr(title){
     for(let i = 0; i < projArr.length; i++){
-        if(projArr[i].title == title){
+        if(projArr[i]._title == title){
             projArr.splice(i,1);
             localStorage.setItem('projects', JSON.stringify(projArr));
         }

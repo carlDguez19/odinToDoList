@@ -1,6 +1,6 @@
 import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
-import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain, editProjectNameMain } from "./projectDOM";
+import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain, editProjectNameMain, editTasksToNewProj } from "./projectDOM";
 import { _testering, editButtonClicked, currTitle2 } from "./projectEventListeners";
 
 const projOverlay = document.querySelector(".newProjectOverlay");
@@ -20,6 +20,7 @@ export function projectOverlayStuff(){
         if(editButtonClicked){
             editProjectInArr(currTitle2.textContent);//this method needs localStorage DONEDONEDONEDONEDONEDONE
             editProjectInSidebar(currTitle2.textContent);//NO localStorage here
+            editTasksToNewProj(currTitle2.textContent);
             editProjectNameMain();//this method needs localStorage MAYBE...but probably not
             projArr.splice(projArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
             localStorage.setItem('projects', JSON.stringify(projArr));//this might not work without getItem again ??? not sure will have to test again by editing and refreshing a project
@@ -36,10 +37,11 @@ export function projectOverlayStuff(){
 
 function editProjectInArr(replaceTitle){
     for(let i = 0; i < projArr.length; i++){//for(let i = 0; i < projArr.length-1; i++){
-        if(projArr[i].title == replaceTitle){
-            projArr[i].title = projArr[projArr.length-1].title;
-            projArr[i].description = projArr[projArr.length-1].description;
+        if(projArr[i]._title == replaceTitle){
+            projArr[i]._title = projArr[projArr.length-1]._title;
+            projArr[i]._description = projArr[projArr.length-1]._description;
             localStorage.setItem('projects', JSON.stringify(projArr));
+            //now go through taskArr and change ._tProj to this new name
         }
     }
 }

@@ -1,10 +1,12 @@
-import { dqs } from "./menuEventListeners";//todayArr and weekArr will not be needed!!!!!
+import { dqs, taskArr } from "./menuEventListeners";//todayArr and weekArr will not be needed!!!!!
 import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { displayTaskInMain } from "./taskDOM";
 import { clearTaskMain } from "./taskDOM";
-import { taskEditButton, editTask, editTaskProjValue } from "./taskEventListeners";
+import { taskEditButton, editTaskProjValue } from "./taskEventListeners";
 import { parse, format } from "date-fns";
+import { Project } from "./projectClass";
+import { Task } from "./taskClass";
 
 export const taskOverlay = dqs(".newTaskOverlay");
 const taskClose = dqs(".taskCloseButton");
@@ -31,13 +33,14 @@ export function _taskSubmit(){
         //REMOVE OLD TASK USING ALGORITHM FROM REMOVETASK SECTION (editTask is task to be removed)
         const moddedTask = extractDataForTask();
         //const projNameEd = dqs(".projectNameMain");
-        const projEd = findProjectInArr(moddedTask.tProj);
+        //const projEd = findProjectInArr(moddedTask.tProj);
         clearTaskMain(editTask.tTitle);
-        projEd.editTask(editTask.tTitle);
+        editTask(editTask.tTitle);
         displayTaskInMain(moddedTask);
-        projEd.removeLastTask();
-        //projEd.removeTaskFromArr(moddedTask.tTitle);
-        projEd.printTasks();
+        taskArr.splice(taskArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
+        // projEd.removeLastTask();
+        // projEd.removeTaskFromArr(moddedTask.tTitle);
+        printTasks(moddedTask._tProj);
         // // // // //projEd.editTask(taskName.textContent);//NOT NEEDED??
         // // // // //taskName.textContent = modedTask.tTitle;//NOT NEEDED??
         // // // // checkULChildrenEditTask(editTask);
@@ -79,6 +82,27 @@ export function _taskSubmit(){
     }
 }
 
+export function printTasks(proj){
+    for(let i = 0; i < taskArr.length; i++){
+        if(taskArr[i]._tProj == proj){
+            console.log(taskArr[i]._tTitle);
+        }
+    }
+}
+
+function editTask(title){
+    for(let i = 0; i < taskArr.length; i++){//for(let i = 0; i < projArr.length-1; i++){
+        if(taskArr[i]._tTitle == title){
+            taskArr[i]._tTitle = taskArr[projArr.length-1]._tTitle;
+            taskArr[i]._tDesc = taskArr[projArr.length-1]._tDesc;
+            taskArr[i]._tDue = taskArr[taskArr.length-1]._tDue;
+            taskArr[i]._tPrio = taskArr[taskArr.length-1]._tPrio;
+            taskArr[i]._tProj = taskArr[taskArr.length-1]._tProj;
+            localStorage.setItem('tasks', JSON.stringify(taskArr));
+        }
+    }
+}
+
 function clearEvLis(){
     taskSubmit.removeEventListener('click', _taskSubmit);
     editTask = null;
@@ -89,15 +113,24 @@ export function extractDataForTask(){
     const taskDesc = document.getElementById("tDescription").value;
     const taskDueDate = document.getElementById("tDueDate").value;
     const taskPrio = document.getElementById("tTaskPrio").value;
-    const taskProj = getProjectBelonging();
+    
+    const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
+
+    const taskProj = temp.textContent;
 
     //const modDate = moddedTask.tDue;
     const parseTaskDueDate = parse(taskDueDate, 'yyyy-MM-dd', new Date());
     
-    const fndProj = findProjectInArr(taskProj);
+    // const fndProj = findProjectInArr(taskProj);
+    // console.log(fndProj._title);
+    // let tempProj = new Project(fndProj._title, fndProj._description);
+    // tempProj.title = fndProj._title;
+    // tempProj.description = fndProj._description;
 
     if(taskTitle && taskDueDate){
-        const taskMade = fndProj.newTask(taskTitle, taskDesc, parseTaskDueDate, taskPrio, taskProj);
+        const taskMade = new Task(taskTitle, taskDesc, parseTaskDueDate, taskPrio, taskProj);
+        taskArr.push(taskMade);
+        localStorage.setItem('tasks', JSON.stringify(taskArr));
         taskFormClear();
         return taskMade;
     }else{
@@ -110,7 +143,7 @@ export function extractDataForTask(){
 
 function getProjectBelonging(){
     if(editTask){
-        return editTask.tProj;
+        return editTask._tProj;
     }else{
         const temp = dqs(".projectNameMain");//SHOULD NOT BE NEEDED GIVEN PARAM
         return temp.textContent;

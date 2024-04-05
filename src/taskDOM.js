@@ -10,7 +10,7 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     const taskLI = document.createElement('li');
 
     const titleDisp = document.createElement('div');
-    titleDisp.textContent = task.tTitle;
+    titleDisp.textContent = task._tTitle;//MEY NEED UNDERSCORE
     titleDisp.classList.add("titleTaskDisp");
 
     const buttonDiv = document.createElement('div');
@@ -51,7 +51,7 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     //taskLI.appendChild();
 
     taskLI.classList.add("todo");
-    const prio = task.tPrio;
+    const prio = task._tPrio;// MAY NEED UNDERSCORE
     if(prio == 'high'){
         taskLI.classList.add("highPrio");
     }
