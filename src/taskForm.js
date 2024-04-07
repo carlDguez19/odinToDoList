@@ -3,7 +3,7 @@ import { findProjectInArr } from "./projectEventListeners";
 import { displayNeedTitle } from "./projectForm";
 import { displayTaskInMain } from "./taskDOM";
 import { clearTaskMain } from "./taskDOM";
-import { taskEditButton, editTaskProjValue } from "./taskEventListeners";
+import { taskEditButton, editTaskProjValue, editTask } from "./taskEventListeners";
 import { parse, format } from "date-fns";
 import { Project } from "./projectClass";
 import { Task } from "./taskClass";
@@ -26,39 +26,17 @@ export function _taskSubmit(){
     const currentDate = new Date();//gets todays date
     //const today = format(currentDate, 'yyyy-MM-dd');
     if(taskEditButton){
-        // // // // //const taskName2 = getTaskNameLi
-        // // // // //insert edit algorithm here
-        // // // // //let taskName = e.target.parentElement.parentElement.textContent;
-        // // // // //console.log("taskName in taskSubmit poop: " + taskName.textContent);
-        //REMOVE OLD TASK USING ALGORITHM FROM REMOVETASK SECTION (editTask is task to be removed)
         const moddedTask = extractDataForTask();
         //const projNameEd = dqs(".projectNameMain");
         //const projEd = findProjectInArr(moddedTask.tProj);
-        clearTaskMain(editTask.tTitle);
-        editTask(editTask.tTitle);
+        clearTaskMain(editTask._tTitle);
+        editTaskFunc(editTask._tTitle);
         displayTaskInMain(moddedTask);
         taskArr.splice(taskArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
+        localStorage.setItem('tasks', JSON.stringify(taskArr));
         // projEd.removeLastTask();
         // projEd.removeTaskFromArr(moddedTask.tTitle);
-        printTasks(moddedTask._tProj);
-        // // // // //projEd.editTask(taskName.textContent);//NOT NEEDED??
-        // // // // //taskName.textContent = modedTask.tTitle;//NOT NEEDED??
-        // // // // checkULChildrenEditTask(editTask);
-        // // // // projEd.removeTaskFromArr(moddedTask.tTitle);
-        // // // // taskEditButton = false;
-        // // // // moddedTask = null;
-
-        //THIS IS WHERE date-fns WILL GO TO
-        //DETERMINE WHICH TASKS ARE DUE TODAY
-        //OR THIS WEEK AFTER BEING EDITED
-        
-        //const modDate = moddedTask.tDue;
-        //const parseModDate = parse(modDate, 'yyyy-MM-dd', new Date());//THIS SHOULD NOT BE NEEDED ANYMORE
-
-        //if parseModDate is today then add to todayArr and display
-        //else if it is within the coming week add to weekArr and display
-        //this can be done within a function
-        
+        printTasks(moddedTask._tProj);        
         taskEditButton = false;
         clearEvLis();
     }
@@ -82,19 +60,18 @@ export function _taskSubmit(){
     }
 }
 
-export function printTasks(proj){
+export function printTasks(){
+    console.log("tasks in arr are the following: ")
     for(let i = 0; i < taskArr.length; i++){
-        if(taskArr[i]._tProj == proj){
-            console.log(taskArr[i]._tTitle);
-        }
+        console.log(taskArr[i]._tTitle);
     }
 }
 
-function editTask(title){
+function editTaskFunc(title){
     for(let i = 0; i < taskArr.length; i++){//for(let i = 0; i < projArr.length-1; i++){
         if(taskArr[i]._tTitle == title){
-            taskArr[i]._tTitle = taskArr[projArr.length-1]._tTitle;
-            taskArr[i]._tDesc = taskArr[projArr.length-1]._tDesc;
+            taskArr[i]._tTitle = taskArr[taskArr.length-1]._tTitle;
+            taskArr[i]._tDesc = taskArr[taskArr.length-1]._tDesc;
             taskArr[i]._tDue = taskArr[taskArr.length-1]._tDue;
             taskArr[i]._tPrio = taskArr[taskArr.length-1]._tPrio;
             taskArr[i]._tProj = taskArr[taskArr.length-1]._tProj;

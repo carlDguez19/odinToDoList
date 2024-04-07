@@ -65,13 +65,14 @@ export function _taskTestering(e){//var _taskTestering = function(e){
     else if(e.target.matches(".taskProjRemove")){//"else if" if all three buttons are in this section
         //THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
         taskRemButton = true;
-        console.log(taskName.textContent);
+        console.log("project to remove" + taskName.textContent);
         //const projNameRem = dqs(".projectNameMain");
         const taskTemp = checkThroughAllTasks(taskName.textContent);
         //const projRem = findProjectInArr(taskTemp.tProj);//project class will have a func that can go through its task array and remove a specified task :)
         removeTaskFromArr(taskName.textContent);//localStorage%&%&%&%&%%&%&%&%&%&%&%
-        printTasks(taskTemp._tProj);
+        printTasks();
         clearTaskMain(taskName.textContent);
+        //localStorage.setItem('tasks', JSON.stringify(taskArr));
         //code here for removal of individual task
     }
     // else if task name "button" bring down infoDescOverlay with all info of task
@@ -91,11 +92,11 @@ export function _taskTestering(e){//var _taskTestering = function(e){
 
 function removeTaskFromArr(taskName){
     for(var i = 0; i < taskArr.length; i++){
-        if(taskArr._tTitle == taskName){
-            taskArr.splice(i,1);
-            localStorage.setItem('tasks', JSON.stringify(taskArr));
+        if(taskArr[i]._tTitle == taskName){
+            taskArr.splice(i, 1);
         }
-    }   
+    }
+    localStorage.setItem('tasks', JSON.stringify(taskArr));
 }
 
 function checkThroughAllTasks(taskName){
@@ -122,9 +123,10 @@ export function editTaskForm(task){
     //get dqs(#title) and dqs(#date) and set value to task title and date as default
     const taskTitleForm = dqs("#tTitle");
     const taskDateForm = dqs("#tDueDate");
-    taskTitleForm.value = task.tTitle;
-
-    const formatDate = format(task.tDue, 'yyyy-MM-dd');
+    taskTitleForm.value = task._tTitle;
+    
+    const tempDate = new Date(task._tDue);
+    const formatDate = format(tempDate, 'yyyy-MM-dd');
     taskDateForm.value = formatDate;
     //editTaskProjValue = task.tProj;
     //WILL USE EDIT TASK TO GET ITS .tProj FOR PROJECT BELONGING

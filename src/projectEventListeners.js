@@ -32,7 +32,7 @@ export var _testering = function(e){
         }
         else if(removeButton){
             //const currTitle = dqs(".projectNameMain");//THIS SECTION WILL USE localStorage %&%&%&%&%&%&%%&%&%&%&%&%&%&%
-            removeProjectFromSidebar(currTitle.textContent);
+            removeProjectFromSidebar(currTitle.textContent);//GOOD 
             removeProjArr(currTitle.textContent);//localStorage DONEDONEDONEDONEDONE
             removeTasksOfRemProj(currTitle.textContent);
             clearMain();
