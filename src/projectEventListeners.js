@@ -55,6 +55,7 @@ function removeTasksOfRemProj(proj){
     for(let i = 0; i < taskArr.length; i++){
         if(taskArr[i]._tProj == proj){
             taskArr.splice(i, 1);
+            i--;
         }
     }
     localStorage.setItem('tasks', JSON.stringify(taskArr));
