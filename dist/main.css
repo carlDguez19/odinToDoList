@@ -17,19 +17,19 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    border: 3px solid skyblue;
+    border: 3px solid springgreen;
     top: -50%;
     left: 50%;
     width: 500px;
     height: 500px;
-    background-color: purple;
+    background-color: forestgreen;
     transform: translate(-50%, -50%);
 }
 .infoDescOverlay{
     white-space: pre;
 }
 .infoSec{
-    background-color: #b5af14;
+    background-color: var(--goAwayGreen);
     width: 350px;
     height: 350px;
     font-family: Arial, Helvetica, sans-serif;
@@ -129,7 +129,7 @@ button{
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: red;
+    background-color: var(--goAwayGreen);
 }
 .project{
     text-align: center;
@@ -138,7 +138,7 @@ button{
     align-items: center;
     width: 80%;
     height: 50px;
-    background-color: purple;
+    background-color: springgreen;
     border-radius: 15px;
     margin-top: 15px;
 }
@@ -157,7 +157,7 @@ button{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16pt;
     font-weight: bold;
-    background-color: orange;
+    background-color: forestgreen;
     width: 180px;
     height: 30px;
     border-radius: 10px;
@@ -177,7 +177,7 @@ button{
     background-color: gold;
 }
 .lowPrio{
-    background-color: forestgreen;
+    background-color: lime;
 }
 
 li{
@@ -212,7 +212,7 @@ li{
 /* sidebarsidebarsidebarsidebarsidebarsidebar css */
 .sidebar-menu{
     position: absolute;
-    background-color: skyblue;
+    background-color: forestgreen;
     width: 200px;
     height: 100vh;
     top: 0;
@@ -268,11 +268,11 @@ li{
     margin-top: 15px;
 }
 .createProj:hover, .allTasksSide:hover, .todayTasksSide:hover, .weekTasksSide:hover, .importantHighTasksSide:hover{
-    background-color: blue;
+    background-color: greenyellow;
     border-radius: 15px;
 }
 .createProj:active, .allTasksSide:active, .todayTasksSide:active, .weekTasksSide:active, .importantHighTasksSide:active{
-    background-color: darkblue;
+    background-color: darkgreen;
     border-radius: 15px;
 }
 
