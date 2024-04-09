@@ -139,7 +139,7 @@ export function checkForTodaysTasks(tArr){
     if(tArr){
         for(var i = 0; i < tArr.length; i++){
             const tempTask = new Task(tArr[i]._tTitle, tArr[i]._tDesc, tArr[i]._tDue, tArr[i]._tPrio, tArr[i]._tProj);
-            const wrapformatTaskDate = format(parseISO(tempTask.tDue), 'yyyy-MM-dd');//check dates here
+            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');//check dates here... tempTask.tDue
             const ftd = new Date(wrapformatTaskDate);
 
             if(isEqual(ftd, todayDate)){
@@ -156,7 +156,7 @@ export function checkForWeekTasks(tArr){
     if(tArr){
         for(var i = 0; i < tArr.length; i++){
             const tempTask = new Task(tArr[i]._tTitle, tArr[i]._tDesc, tArr[i]._tDue, tArr[i]._tPrio, tArr[i]._tProj)
-            const wrapformatTaskDate = format(parseISO(tempTask.tDue), 'yyyy-MM-dd');//check dates here
+            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');//check dates here... tempTask.tdue
             const ftd = new Date(wrapformatTaskDate);
 
             if(isThisWeek(ftd)){

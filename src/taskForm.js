@@ -20,7 +20,6 @@ export function taskOverlayListeners(){
 
 export function _taskSubmit(){
     taskOverlay.style.animation = "projectSlideUp 1.5s forwards"
-    console.log("taskEditButton bool value: " + taskEditButton);
     const currentDate = new Date();//gets todays date
     if(taskEditButton){
         const moddedTask = extractDataForTask();
@@ -29,7 +28,6 @@ export function _taskSubmit(){
         displayTaskInMain(moddedTask);
         taskArr.splice(taskArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
         localStorage.setItem('tasks', JSON.stringify(taskArr));
-        printTasks(moddedTask._tProj);        
         taskEditButton = false;
         clearEvLis();
     }
@@ -40,13 +38,6 @@ export function _taskSubmit(){
         }
         taskFormClear();
         clearEvLis();
-    }
-}
-
-export function printTasks(){
-    console.log("tasks in arr are the following: ")
-    for(let i = 0; i < taskArr.length; i++){
-        console.log(taskArr[i]._tTitle);
     }
 }
 

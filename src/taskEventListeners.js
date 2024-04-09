@@ -1,6 +1,6 @@
 import { dqs, taskArr } from "./menuEventListeners";
 import { clearTaskMain } from "./taskDOM";
-import { printTasks, taskOverlay, taskOverlayListeners } from "./taskForm";
+import { taskOverlay, taskOverlayListeners } from "./taskForm";//printTasks
 import { infoOverlayListener } from "./infoDescListeners";
 import { format } from "date-fns";//parse
 
@@ -27,7 +27,6 @@ export function _taskTestering(e){
         taskRemButton = true;
         const taskTemp = checkThroughAllTasks(taskName.textContent);
         removeTaskFromArr(taskName.textContent);
-        printTasks();//MIGHT NOT NEED
         clearTaskMain(taskName.textContent);
     }
     else if(e.target.matches(".titleTaskDisp")){
