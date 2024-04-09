@@ -4,23 +4,19 @@ import { _taskTestering } from './taskEventListeners';
 import { dqs } from './menuEventListeners';
 import { taskEListeners } from './taskEventListeners';
 
-export function displayTaskInMain(task){//(project, ul) might be needed as params but probs not
+export function displayTaskInMain(task){
     const projUL = document.querySelector(".todoUL");
 
     const taskLI = document.createElement('li');
 
     const titleDisp = document.createElement('div');
-    titleDisp.textContent = task._tTitle;//MEY NEED UNDERSCORE
+    titleDisp.textContent = task._tTitle;
     titleDisp.classList.add("titleTaskDisp");
 
     const buttonDiv = document.createElement('div');
 
     const taskCheckbox = document.createElement('input');
     taskCheckbox.type = "checkbox";
-
-    // const taskDateInput = document.createElement('input');
-    // taskDateInput.type = "date";
-    // taskDateInput.value = task.tDue;
 
     const taskEditDiv = document.createElement('div');
     const taskRemoveDiv = document.createElement('div');
@@ -36,8 +32,6 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
     taskEditDiv.appendChild(taskEditIcon);
     taskRemoveDiv.appendChild(taskRemoveIcon);
 
-    //taskLI.textContent = task.tTitle;//task.tTitle + "  " + task.tDue
-
     buttonDiv.appendChild(taskEditDiv);
     buttonDiv.appendChild(taskRemoveDiv);
     buttonDiv.appendChild(taskCheckbox);
@@ -48,10 +42,8 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
 
     taskLI.appendChild(buttonDiv);
 
-    //taskLI.appendChild();
-
     taskLI.classList.add("todo");
-    const prio = task._tPrio;// MAY NEED UNDERSCORE
+    const prio = task._tPrio;
     if(prio == 'high'){
         taskLI.classList.add("highPrio");
     }
@@ -68,7 +60,6 @@ export function displayTaskInMain(task){//(project, ul) might be needed as param
 }
 
 export function clearTaskMain(task){
-    //get task ul section and remove li via parameter(like removing a project from sidebar)
     const ulParent = dqs(".todoUL");
     const liTaskChildren = ulParent.children;
     for(let i = 0; i < liTaskChildren.length; i++){
@@ -76,5 +67,4 @@ export function clearTaskMain(task){
             ulParent.removeChild(liTaskChildren[i]);
         }
     }
-    //document.removeEventListener('click', _taskTestering);IF MULTIPLE TASKS, OTHER TASKS BUTTONS WONT WORK
 }

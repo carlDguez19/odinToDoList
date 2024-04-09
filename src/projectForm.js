@@ -6,7 +6,6 @@ import { _testering, editButtonClicked, currTitle2 } from "./projectEventListene
 const projOverlay = document.querySelector(".newProjectOverlay");
 
 export function projectOverlayStuff(){
-    //buttons
     const closeButton = document.querySelector(".closeButton");
     const submitButton = document.querySelector(".submitButton");
 
@@ -18,16 +17,16 @@ export function projectOverlayStuff(){
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         const projectParam = extractDataForProject();
         if(editButtonClicked){
-            editProjectInArr(currTitle2.textContent);//this method needs localStorage DONEDONEDONEDONEDONEDONE
-            editProjectInSidebar(currTitle2.textContent);//NO localStorage here
+            editProjectInArr(currTitle2.textContent);
+            editProjectInSidebar(currTitle2.textContent);
             editTasksToNewProj(currTitle2.textContent);
-            editProjectNameMain();//this method needs localStorage MAYBE...but probably not
-            projArr.splice(projArr.length-1,1);//REMOVE THE LAST PROJECT IN ARRAY..NOW USELESS
-            localStorage.setItem('projects', JSON.stringify(projArr));//this might not work without getItem again ??? not sure will have to test again by editing and refreshing a project
-            editButtonClicked = false;//localStorage call first remove last entry then set for prev line
+            editProjectNameMain();
+            projArr.splice(projArr.length-1,1);
+            localStorage.setItem('projects', JSON.stringify(projArr));
+            editButtonClicked = false;
         }else{
             if(projectParam){
-                addProjectToSidebar(projectParam.title)//this will be in projectDOM.js file
+                addProjectToSidebar(projectParam.title)
                 displayProjectInMain(projectParam);
             }
             projectFormClear();
@@ -36,33 +35,45 @@ export function projectOverlayStuff(){
 }
 
 function editProjectInArr(replaceTitle){
-    for(let i = 0; i < projArr.length; i++){//for(let i = 0; i < projArr.length-1; i++){
+    for(let i = 0; i < projArr.length; i++){
         if(projArr[i]._title == replaceTitle){
             projArr[i]._title = projArr[projArr.length-1]._title;
             projArr[i]._description = projArr[projArr.length-1]._description;
             localStorage.setItem('projects', JSON.stringify(projArr));
-            //now go through taskArr and change ._tProj to this new name
         }
     }
 }
 
-function extractDataForProject(){//this will need localStorage aswell
+function extractDataForProject(){
     const titleInput = document.getElementById("title").value
     let descInput = document.getElementById("description").value;
 
     if(titleInput){
-        //console.log("detected title");//debugging
+        if(checkDupProjName(titleInput)){
+            displayNeedTitle();
+            projectFormClear();
+            projOverlay.style.animation = "projectSlideDown 1.5s forwards";
+            return;
+        }
         const projectMade = new Project(titleInput, descInput);
         projArr.push(projectMade);
         localStorage.setItem('projects', JSON.stringify(projArr));
-        //localStorage.clear();
         return projectMade;
     }else{
-        displayNeedTitle();// CAN INSERT DOM MANIPULATION TO SHIFT DOWN THE ERROR OVERLAY :)
+        displayNeedTitle();
         projectFormClear();
         projOverlay.style.animation = "projectSlideDown 1.5s forwards";
         return;
     }
+}
+
+function checkDupProjName(projName){
+    for(let i = 0; i < projArr.length; i++){
+        if(projArr[i]._title == projName){
+            return true;
+        }
+    }
+    return false;
 }
 
 export function displayNeedTitle(){
