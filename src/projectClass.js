@@ -1,5 +1,5 @@
 export class Project{
-    constructor(title, description){
+    constructor(title, description){//prject class with title and description with respective setters and getters
         this.title = title;
         this.description = description;
     }
