@@ -1,4 +1,4 @@
-export class Task{
+export class Task{//task class; title, description, dueDate, priority, and project along with setters and getters
     constructor(tTitle, tDesc, tDue, tPrio, tProj){
         this.tTitle = tTitle;
         this.tDesc = tDesc;
