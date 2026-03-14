@@ -1,84 +1,100 @@
+//DOM utilities and assets for rendering projects in the UI
 import Remove from '../src/imgs/close.png';
 import Create from '../src/imgs/add.png';
 import Edit from '../src/imgs/edit.png';
+
 import { dqs, projArr, taskArr } from './menuEventListeners';
-import { projectEListeners } from './projectEventListeners';
-import { _testering } from './projectEventListeners';
+import { projectEListeners, _testering } from './projectEventListeners';
 import { displayTaskInMain } from './taskDOM';
+
 import { isEqual, format, isThisWeek, parseISO } from 'date-fns';//parse, addDays, isWithinInterval
 import { Task } from './taskClass';
 
+//Main section where the selected project and its tasks are displayed
 export const mainSec = dqs(".projectSection");
 
+//Add project title to the sidebar list
 export function addProjectToSidebar(projectTitle){
-    const projSide = dqs(".sidebarProject");//select sidebar section in html
+    const projSide = dqs(".sidebarProject");
     let projTitle = document.createElement('span');
-    projTitle.textContent = projectTitle;//create span and add project title to it
-    projTitle.classList.add('projectNameSidebar');//add styling to it via class
-    projSide.appendChild(projTitle);//append to sidebar section
+    projTitle.textContent = projectTitle;
+    projTitle.classList.add('projectNameSidebar');
+    projSide.appendChild(projTitle);
 }
+
+//Remove a project title from the sidebar list
 export function removeProjectFromSidebar(projectTitle){
-    const sidebarProj = dqs(".sidebarProject");//get children of sidebar section aka other projects
+    const sidebarProj = dqs(".sidebarProject");
     const sidebarProjChildren = sidebarProj.children;
-    for(let i = 0; i < sidebarProjChildren.length; i++){//look through projects in sidebar and remove if title matches with param
+    for(let i = 0; i < sidebarProjChildren.length; i++){
         if(sidebarProjChildren[i].textContent == projectTitle){
             sidebarProj.removeChild(sidebarProjChildren[i]);
         }
     }
 }
+
+//update a project title in the sidebar after editing
 export function editProjectInSidebar(projectTitle){
     const sidebarProj = dqs(".sidebarProject");
-    const sidebarProjChildren = sidebarProj.children;//get children of sidebar section aka other projects
+    const sidebarProjChildren = sidebarProj.children;
     for(let i = 0; i < sidebarProjChildren.length; i++){
-        if(sidebarProjChildren[i].textContent == projectTitle){//look through projects in sidebar if matches...
-            sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length-1]._title;//...substitute with last pushed in projects info
+        if(sidebarProjChildren[i].textContent == projectTitle){
+            //Replace with the most recently updated project title
+            sidebarProjChildren[i].textContent = projArr[sidebarProjChildren.length-1]._title;
         }
     }
 }
 
+//Update tasks so they belong to the newly edited project name
 export function editTasksToNewProj(projectTitle){
-    for(let i = 0; i < taskArr.length; i++){//go through task arr if task proj matches param then switch...
-        if(taskArr[i]._tProj == projectTitle){//... to last pushed in proj ._tProj
+    for(let i = 0; i < taskArr.length; i++){
+        if(taskArr[i]._tProj == projectTitle){
             taskArr[i]._tProj = projArr[projArr.length-1]._title;
             localStorage.setItem('tasks', JSON.stringify(taskArr));
         }
     }
 }
 
-export function editProjectNameMain(){//change current displayed project name to new edited project name
+//Update the displayed project name in the main section after editing
+export function editProjectNameMain(){
     const OGProjName = dqs(".projectNameMain");
     OGProjName.textContent = projArr[projArr.length-1]._title;
 }
 
+//Render a selected project and its task list in the main section
 export function displayProjectInMain(project){
     clearMain();
-    const projDiv = document.createElement('div');//main div that will display the project
+    
+    const projDiv = document.createElement('div');
 
-    const taskSecUL = document.createElement('ul');//section that can hold individual tasks
+    //Container for tasks under this project
+    const taskSecUL = document.createElement('ul');
     taskSecUL.classList.add("todoUL")
     
-    const projCheckbox = document.createElement('input');//checkbox to be attached to the displyed project
+    //checkbox for marking project completion (visual only)
+    const projCheckbox = document.createElement('input');
     projCheckbox.type = "checkbox";
     projCheckbox.classList.add("projectCheckbox");
 
-    
-    const projNameSpan = document.createElement('span');//span that will hold the clickable title to display info
-    if(project._title.length > 30){//jif title to long then slice it to be shorter and add ellipsis
+    //Project title (truncated if too long)
+    const projNameSpan = document.createElement('span');
+    if(project._title.length > 30){
         let mainModProjTitle = project._title.slice(0,31);
         projNameSpan.textContent = mainModProjTitle + "...";
     }else{
-        projNameSpan.textContent = project._title;//else keep og title
+        projNameSpan.textContent = project._title;
     }
-    projNameSpan.classList.add("projectNameMain");//add styling via class
+    projNameSpan.classList.add("projectNameMain");
 
+    //Container for edit, remove, and add-task buttons
+    const buttonCont = document.createElement('div');
     
-    const buttonCont = document.createElement('div');//add container that will hold edit, remove, and addTask
-    
-    const addDiv = document.createElement('div');//addTask container
-    const editDiv = document.createElement('div');//edit container
-    const removeDiv = document.createElement('div');//remove container
+    const addDiv = document.createElement('div');
+    const editDiv = document.createElement('div');
+    const removeDiv = document.createElement('div');
 
-    const addIcon = new Image();//adding images and styling to their respective containers
+    //Icons for porject actions
+    const addIcon = new Image();
     addIcon.src = Create;
     addIcon.classList.add('projAdd');
 
@@ -92,28 +108,32 @@ export function displayProjectInMain(project){
 
     addDiv.appendChild(addIcon);
     editDiv.appendChild(editIcon);
-    removeDiv.appendChild(remIcon);//append icons to containers
+    removeDiv.appendChild(remIcon);
     
     buttonCont.appendChild(addDiv);
     buttonCont.appendChild(editDiv);
     buttonCont.appendChild(removeDiv);
-    buttonCont.classList.add("projectOptions");//append containers to button container
+    buttonCont.classList.add("projectOptions");
 
+    //Build the full project display block
     projDiv.appendChild(projCheckbox);
     projDiv.appendChild(projNameSpan);
     projDiv.appendChild(buttonCont);
-    projDiv.classList.add("project");//add checkbox, title, and button container to project div
+    projDiv.classList.add("project");
 
-    mainSec.appendChild(projDiv);//add project div to main section
-    mainSec.appendChild(taskSecUL);//add task section to main section
+    mainSec.appendChild(projDiv);
+    mainSec.appendChild(taskSecUL);
     
-    checkForTasks(project);//check if tasks are under the newly created project if so, display them in main
+    //Display tasks belonging to this project
+    checkForTasks(project);
 
+    //Attach event listeners for project actions
     projectEListeners();
 }
 
-export function checkForTasks(proj){//go through task arr if project of current task matches...
-    if(taskArr){//...proj parameter then display task in the main section(taskUL)
+//Display all tasks belonging to the given project
+export function checkForTasks(proj){
+    if(taskArr){
         for(var i = 0; i < taskArr.length; i++){
             if(taskArr[i]._tProj == proj._title){
                 displayTaskInMain(taskArr[i]);
@@ -122,7 +142,8 @@ export function checkForTasks(proj){//go through task arr if project of current 
     }
 }
 
-export function checkForImportantTasks(tArr){//go through task arr if task priority is high display in main sec
+//Display all tasks marked as high priority
+export function checkForImportantTasks(tArr){
     if(tArr){
         for(var i = 0; i < tArr.length; i++){
             if(tArr[i]._tPrio == 'high'){
@@ -132,43 +153,43 @@ export function checkForImportantTasks(tArr){//go through task arr if task prior
     }
 }
 
-export function checkForTodaysTasks(tArr){//if task contains todays date then display in main sec
-    const wrapDate = new Date();//get todays date
-    const today = format(wrapDate, 'yyyy-MM-dd');//format todays date to yyyy-MM-dd format
-    const todayDate = new Date(today);//wrap the formatted date in new Date
+//Display tasks due today
+export function checkForTodaysTasks(tArr){
+    const wrapDate = new Date();
+    const today = format(wrapDate, 'yyyy-MM-dd');
+    const todayDate = new Date(today);
     if(tArr){
-        for(var i = 0; i < tArr.length; i++){//wrap task in new task and format its ._tDue then wrap in new Date aswell
+        for(var i = 0; i < tArr.length; i++){
             const tempTask = new Task(tArr[i]._tTitle, tArr[i]._tDesc, tArr[i]._tDue, tArr[i]._tPrio, tArr[i]._tProj);
-            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');//check dates here... tempTask.tDue
+            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');
             const ftd = new Date(wrapformatTaskDate);
 
-            if(isEqual(ftd, todayDate)){//check todays date with the tasks date if its equal display in main
+            if(isEqual(ftd, todayDate)){
                 displayTaskInMain(taskArr[i]);
             }
         }
     }
 }
 
+//Display tasks due this week
 export function checkForWeekTasks(tArr){
-    // const wrapDate = new Date();//get todays date
-    // const today = format(wrapDate, 'yyyy-MM-dd');//format todays date to yyyy-MM-dd format
-    // const todayDate = new Date(today);//wrap the formatted date in new Date
     if(tArr){
-        for(var i = 0; i < tArr.length; i++){//wrap task in new task and format its ._tDue then wrap in new Date aswell
+        for(var i = 0; i < tArr.length; i++){
             const tempTask = new Task(tArr[i]._tTitle, tArr[i]._tDesc, tArr[i]._tDue, tArr[i]._tPrio, tArr[i]._tProj)
-            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');//format date of wrapper task
-            const ftd = new Date(wrapformatTaskDate);//then put formatted date through new date
+            const wrapformatTaskDate = format(parseISO(tempTask._tDue), 'yyyy-MM-dd');
+            const ftd = new Date(wrapformatTaskDate);
 
-            if(isThisWeek(ftd)){//check the tasks date if its in the same week display in main
+            if(isThisWeek(ftd)){
                 displayTaskInMain(taskArr[i]);
             }
         }
     }
 }
 
-export function clearMain(){//go through main section
+//Clear the main section before rendering a new project or filter view
+export function clearMain(){
     document.removeEventListener('click', _testering);
-    while(mainSec.firstChild){//as long as content(children) is detected in the main section remove it
+    while(mainSec.firstChild){
         mainSec.removeChild(mainSec.firstChild)
     }
 }
