@@ -1,92 +1,129 @@
+// Handles the project creation/editing form overlay.
+// This module extracts form data, validates it, updates projArr/localStorage,
+// and syncs changes to the sidebar and main project display.
+
 import { Project } from "./projectClass";
 import { projArr } from "./menuEventListeners";
-import { addProjectToSidebar, editProjectInSidebar, displayProjectInMain, editProjectNameMain, editTasksToNewProj } from "./projectDOM";
+import {
+    addProjectToSidebar,
+    editProjectInSidebar,
+    displayProjectInMain,
+    editProjectNameMain,
+    editTasksToNewProj
+} from "./projectDOM";
+
 import { _testering, editButtonClicked, currTitle2 } from "./projectEventListeners";
 
-const projOverlay = document.querySelector(".newProjectOverlay");//select project form overlay
+const projOverlay = document.querySelector(".newProjectOverlay");
 
-export function projectOverlayStuff(){
-    //buttons on form
+
+// Initialize listeners for the project form overlay (open, close, submit).
+export function projectOverlayStuff() {
     const closeButton = document.querySelector(".closeButton");
     const submitButton = document.querySelector(".submitButton");
 
-    closeButton.addEventListener('click', function(){
+    // Close the overlay and clear the form
+    closeButton.addEventListener('click', function () {
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
         projectFormClear();
-    })
-    submitButton.addEventListener('click', function(){
+    });
+
+    // Submit handler for creating or editing a project
+    submitButton.addEventListener('click', function () {
         projOverlay.style.animation = 'projectSlideUp 1.5s forwards';
-        const projectParam = extractDataForProject();//get info from form
-        if(editButtonClicked){//if edit button on project is pressed
-            editProjectInArr(currTitle2.textContent);//go through array and update to edited info
-            editProjectInSidebar(currTitle2.textContent);//update sidebar info
-            editTasksToNewProj(currTitle2.textContent);//change ._tProj to new info
-            editProjectNameMain();//change main proj display to new info
-            projArr.splice(projArr.length-1,1);//remove the last proj added that contains the updated info
-            localStorage.setItem('projects', JSON.stringify(projArr));//set the local storage
+
+        const projectParam = extractDataForProject(); // new or edited project data
+
+        if (editButtonClicked) {
+            // Editing an existing project
+            editProjectInArr(currTitle2.textContent);       // update project in projArr
+            editProjectInSidebar(currTitle2.textContent);   // update sidebar display
+            editTasksToNewProj(currTitle2.textContent);     // update tasks referencing this project
+            editProjectNameMain();                          // update main project display
+
+            // Remove the temporary "new" project object created during editing
+            projArr.splice(projArr.length - 1, 1);
+            localStorage.setItem('projects', JSON.stringify(projArr));
+
             editButtonClicked = false;
-        }else{
-            if(projectParam){
-                addProjectToSidebar(projectParam.title)
+        } else {
+            // Creating a new project
+            if (projectParam) {
+                addProjectToSidebar(projectParam.title);
                 displayProjectInMain(projectParam);
             }
             projectFormClear();
         }
-    })
+    });
 }
 
-function editProjectInArr(replaceTitle){
-    for(let i = 0; i < projArr.length; i++){
-        if(projArr[i]._title == replaceTitle){//find project with replaceTitle title and update info to last project in arr
-            projArr[i]._title = projArr[projArr.length-1]._title;//replace with last entry in arr
-            projArr[i]._description = projArr[projArr.length-1]._description;//''
-            localStorage.setItem('projects', JSON.stringify(projArr));//set localStorage
+
+// Update an existing project in projArr using the last-added project as the new data source.
+function editProjectInArr(replaceTitle) {
+    for (let i = 0; i < projArr.length; i++) {
+        if (projArr[i]._title == replaceTitle) {
+            projArr[i]._title = projArr[projArr.length - 1]._title;
+            projArr[i]._description = projArr[projArr.length - 1]._description;
+            localStorage.setItem('projects', JSON.stringify(projArr));
         }
     }
 }
 
-function extractDataForProject(){
-    //get values of title and description from form
-    const titleInput = document.getElementById("title").value
+
+// Extract form data, validate it, create a Project object, and update projArr/localStorage.
+function extractDataForProject() {
+    const titleInput = document.getElementById("title").value;
     let descInput = document.getElementById("description").value;
 
-    if(titleInput){//check if title was entered
-        if(checkDupProjName(titleInput)){//if title already exists display error
-            displayNeedTitle();//display error
-            projectFormClear();//clear form
-            projOverlay.style.animation = "projectSlideDown 1.5s forwards";//bring down project form
+    if (titleInput) {
+        // Prevent duplicate project names
+        if (checkDupProjName(titleInput)) {
+            displayNeedTitle();
+            projectFormClear();
+            projOverlay.style.animation = "projectSlideDown 1.5s forwards";
             return;
         }
-        const projectMade = new Project(titleInput, descInput);//if original
-        projArr.push(projectMade);//...push project into arr
-        localStorage.setItem('projects', JSON.stringify(projArr));//set localStorage
+
+        // Create and store the new project
+        const projectMade = new Project(titleInput, descInput);
+        projArr.push(projectMade);
+        localStorage.setItem('projects', JSON.stringify(projArr));
         return projectMade;
-    }else{
-        displayNeedTitle();//if form filled out without title display error
-        projectFormClear();//clear form
-        projOverlay.style.animation = "projectSlideDown 1.5s forwards";//slide form away
+
+    } else {
+        // Title is required
+        displayNeedTitle();
+        projectFormClear();
+        projOverlay.style.animation = "projectSlideDown 1.5s forwards";
         return;
     }
 }
 
-function checkDupProjName(projName){
-    for(let i = 0; i < projArr.length; i++){//go through array looking if name already exists
-        if(projArr[i]._title == projName){
-            return true;//is so return true
+
+// Check if a project name already exists in projArr.
+function checkDupProjName(projName) {
+    for (let i = 0; i < projArr.length; i++) {
+        if (projArr[i]._title == projName) {
+            return true;
         }
     }
-    return false;//if gone through entire array then return false
+    return false;
 }
 
-export function displayNeedTitle(){//bring down error overlay
-    const errorOverlay = document.querySelector(".errorProjectOverlay");//error overlay in html
-    errorOverlay.style.animation = "projectSlideDown 1.5s forwards"//slide down
-    setTimeout(function(){//wait 2.5 seconds and slide back up
-        errorOverlay.style.animation = "projectSlideUp 1.5s forwards"
+
+// Display the "missing title" error overlay.
+export function displayNeedTitle() {
+    const errorOverlay = document.querySelector(".errorProjectOverlay");
+    errorOverlay.style.animation = "projectSlideDown 1.5s forwards";
+
+    setTimeout(function () {
+        errorOverlay.style.animation = "projectSlideUp 1.5s forwards";
     }, 2500);
 }
 
-export function projectFormClear(){//clear new project form
-    document.getElementById("title").value = "";//inputs become empty
+
+// Clear the project form inputs.
+export function projectFormClear() {
+    document.getElementById("title").value = "";
     document.getElementById("description").value = "";
 }
