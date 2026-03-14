@@ -1,48 +1,55 @@
+//Handles rendering tasks into the main task list and removing them from the UI.
+//This module is responsible only for DOM creation and cleanup - all logic for
+//editing, removing, or interacting with tasks lives in taskEventListeners.
 import Edit from '../src/imgs/edit.png';
 import Remove from '../src/imgs/close.png';
 import { _taskTestering } from './taskEventListeners';
 import { dqs } from './menuEventListeners';
 import { taskEListeners } from './taskEventListeners';
 
+//Render a single task object into the amin task list section
 export function displayTaskInMain(task){
-    const projUL = document.querySelector(".todoUL");//task section
+    const projUL = document.querySelector(".todoUL");//Parent <ul> for tasks
 
-    const taskLI = document.createElement('li');//main task section
+    const taskLI = document.createElement('li');//container for the task row
 
-    const titleDisp = document.createElement('div');//div that display the clickable title of the task
+    //title section (clickable for info overlay)
+    const titleDisp = document.createElement('div');
     titleDisp.textContent = task._tTitle;
-    titleDisp.classList.add("titleTaskDisp");//styling via class
+    titleDisp.classList.add("titleTaskDisp");
 
-    const buttonDiv = document.createElement('div');//div that contains the buttons for task(edit, remove)
+    //button container(edit, remove, checkbox)
+    const buttonDiv = document.createElement('div');
 
-    const taskCheckbox = document.createElement('input');//checkbox for task
+    const taskCheckbox = document.createElement('input');
     taskCheckbox.type = "checkbox";
 
-    const taskEditDiv = document.createElement('div');//div that holds edit icon
-    const taskRemoveDiv = document.createElement('div');//div that holds remove icon
-
-    const taskEditIcon = new Image();//create edit image with styling via class
+    //edit icon
+    const taskEditDiv = document.createElement('div');
+    const taskEditIcon = new Image();
     taskEditIcon.src = Edit;
     taskEditIcon.classList.add('taskProjEdit');
+    taskEditDiv.appendChild(taskEditIcon);
 
-    const taskRemoveIcon = new Image();//create remove image with styling via class
+    //remove icon
+    const taskRemoveDiv = document.createElement('div');
+    const taskRemoveIcon = new Image();
     taskRemoveIcon.src = Remove;
     taskRemoveIcon.classList.add('taskProjRemove');
-
-    taskEditDiv.appendChild(taskEditIcon);//append icons to repective divs
     taskRemoveDiv.appendChild(taskRemoveIcon);
 
-    buttonDiv.appendChild(taskEditDiv);//append edit, remove and checkbox to button div
+    //Assemble button section
+    buttonDiv.appendChild(taskEditDiv);
     buttonDiv.appendChild(taskRemoveDiv);
     buttonDiv.appendChild(taskCheckbox);
-
     buttonDiv.classList.add('taskButtons');
 
-    taskLI.appendChild(titleDisp);//append title to task main
+    //Assemble task row
+    taskLI.appendChild(titleDisp);
+    taskLI.appendChild(buttonDiv);
 
-    taskLI.appendChild(buttonDiv);//append button div to task main
-
-    taskLI.classList.add("todo");//check prio of task, depending on prio add color
+    //Apply priority-based styling
+    taskLI.classList.add("todo");
     const prio = task._tPrio;
     if(prio == 'high'){
         taskLI.classList.add("highPrio");
@@ -54,17 +61,22 @@ export function displayTaskInMain(task){
         taskLI.classList.add("lowPrio");
     }
 
-    projUL.appendChild(taskLI);//add task to task sec
+    //insert into DOM
+    projUL.appendChild(taskLI);
 
-    taskEListeners();//add task event listeners to the task
+    //Attach event listeners for edit/remove/info actions
+    taskEListeners();
 }
 
-export function clearTaskMain(task){//given task as param...
+//Remove a task from the main task list by matching its title text
+export function clearTaskMain(task){
     const ulParent = dqs(".todoUL");
-    const liTaskChildren = ulParent.children;//...go through all task in task section until match is found
+    const liTaskChildren = ulParent.children;
+    
+    //Loop through all <li> elements and remove the matching one
     for(let i = 0; i < liTaskChildren.length; i++){
         if(liTaskChildren[i].textContent == task){
-            ulParent.removeChild(liTaskChildren[i]);//remove task from task section
+            ulParent.removeChild(liTaskChildren[i]);
         }
     }
 }
